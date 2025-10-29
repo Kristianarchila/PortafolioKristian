@@ -22,6 +22,11 @@ export default function Home() {
           cameraDistance={25}
         />
       </div>
+      {/* Partículas decorativas */}
+      <div className="absolute inset-0 -z-10 opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+      </div>
 
       {/* Contenedor principal que cambia de vertical a horizontal */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-0 lg:gap-12 z-10 w-full max-w-5xl">
