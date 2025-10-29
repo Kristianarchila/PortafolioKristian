@@ -6,7 +6,7 @@ export default function SobreMi() {
 
   const stats = [
     { numero: '2', label: 'Años de Experiencia', icon: '📅' },
-    { numero: '5', label: 'Proyectos Completados', icon: '🚀' },
+    { numero: '5+', label: 'Proyectos Completados', icon: '🚀' },
     { numero: '10+', label: 'Tecnologías Dominadas', icon: '💻' },
     { numero: '100%', label: 'Satisfacción del Cliente', icon: '⭐' },
   ];
@@ -87,7 +87,7 @@ export default function SobreMi() {
               un desarrollador Full Stack apasionado por crear soluciones web innovadoras que marquen la diferencia.
             </p>
             <p>
-              Mi viaje en el desarrollo comenzó hace más de 3 años, cuando descubrí que podía 
+              Mi viaje en el desarrollo comenzó hace más de 2 años, cuando descubrí que podía 
               <span className="font-semibold text-cyan-400"> convertir ideas en realidad a través del código</span>. 
               Desde entonces, no he dejado de aprender y evolucionar.
             </p>

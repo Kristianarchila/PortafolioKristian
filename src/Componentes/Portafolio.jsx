@@ -4,10 +4,10 @@ import Particles from "./Backgrods";
 // Datos de proyectos
 const proyectos = [
   {
-    titulo: "Mi Página Web",
-    descripcion: "Página personal construida con React y Tailwind CSS.",
-    link: "https://tusitio.com",
-    imagen: "/proyecto1.jpg",
+    titulo: "Login y Registro con API REST de Rick and Morty",
+    descripcion: "Aplicación web interactiva desarrollada con React y Tailwind CSS que permite a los usuarios registrarse e iniciar sesión utilizando una API REST inspirada en Rick and Morty.",
+    link: "https://apimorthy.vercel.app",
+    imagen: "/apiRickMorty.png",
     tecnologias: ["React", "Tailwind CSS", "JavaScript"]
   },
   {
@@ -15,15 +15,41 @@ const proyectos = [
     descripcion: "Aplicación para consultar el clima usando API OpenWeather.",
     link: "https://clima-kappa-red.vercel.app/",
     imagen: "/capture.png",
-    tecnologias: ["React", "API", "CSS"]
+    tecnologias: ["React", "API", "Talwind"]
   },
   {
-    titulo: "Portafolio Fotográfico",
-    descripcion: "Galería de fotos con diseño moderno y responsive.",
-    link: "#",
-    imagen: "/proyecto3.jpg",
-    tecnologias: ["HTML", "CSS", "JavaScript"]
-  }
+   titulo: "Juego Piedra, Papel o Tijera",
+  descripcion: "Juego interactivo de Piedra, Papel o Tijera desarrollado con HTML, CSS y JavaScript, con un diseño moderno, responsive y agradable para el usuario.",
+  link: "https://piedra-papel-tijera1.vercel.app/",
+  imagen: "/juego.png",
+  tecnologias: ["HTML", "CSS", "JavaScript", "Tailwind CSS"]
+  },
+  {
+    titulo: "To-Do List",
+    descripcion: "Aplicación de lista de tareas (To-Do List) desarrollada con React y Tailwind CSS, que permite a los usuarios agregar, marcar como completadas y eliminar tareas de manera intuitiva y visualmente atractiva.",
+    link: "https://todo-list-tan-delta.vercel.app/",
+    imagen: "/todo-list.png",
+    tecnologias: ["React", "Tailwind CSS", "JavaScript"]
+  },
+  {
+    titulo: "Battle Royal Game",
+  descripcion: "Juego interactivo tipo Battle Royale desarrollado con HTML, CSS, Tailwind CSS y JavaScript, con diseño responsive y experiencia de usuario envolvente.",
+  link: "https://battleroyal.vercel.app/",
+  imagen: "/Battle.png",
+  tecnologias: ["HTML", "CSS", "Tailwind CSS", "JavaScript"]
+  },
+  {
+    titulo: "Netflix Clone Landing Page",
+    descripcion: "Clon de la página de inicio de Netflix practica de css posicionamiento.",
+    link: "netflix-h8gu.vercel.app",
+    imagen: "/Netflix.png",
+    tecnologias: ["JavaScript", "CSS", "HTML", "Sass"]
+  },
+  {titulo: "Gestión de Base de Datos con Laravel",
+  descripcion: "Proyecto CRUD desarrollado con Laravel y MySQL, utilizando migraciones para la creación automática de tablas y administración mediante phpMyAdmin.",
+  link: "/MySql.png", 
+  imagen: "/MySql.png", 
+  tecnologias: ["Laravel", "PHP", "MySQL", "phpMyAdmin"]} 
 ];
 
 export default function Portafolio() {
