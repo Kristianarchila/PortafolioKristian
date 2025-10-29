@@ -37,7 +37,7 @@ export default function Contacto() {
        {/* 🌌 Fondo de partículas */}
       <div className="absolute inset-0 -z-10 bg-purple-950">
         <Particles
-          particleCount={300}
+          particleCount={30}
           particleSpread={10}
           speed={0.3}
           particleColors={["#150e18ff", "#114888ff", "#041e68ff"]}

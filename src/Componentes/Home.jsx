@@ -2,33 +2,35 @@ import { Link } from 'react-router-dom';
 import RotatingText from "./AnimatedText";
 import Particles from "./Backgrods";
 
-
 export default function Home() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 lg:px-24 pt-24 md:pt-0 overflow-hidden text-white">
 
-      {/* 🌌 Fondo de partículas */}
+      {/* 🌌 Fondo de partículas - OPTIMIZADO */}
       <div className="absolute inset-0 -z-10 bg-purple-950">
         <Particles
-          particleCount={300}
-          particleSpread={10}
-          speed={0.3}
+          particleCount={80} // ⚡ Reducido de 300 a 80 (75% menos carga)
+          particleSpread={12} // Aumentado para mejor cobertura con menos partículas
+          speed={0.2} // ⚡ Reducido de 0.3 a 0.2 (menos cálculos)
           particleColors={["#150e18ff", "#114888ff", "#041e68ff"]}
-          moveParticlesOnHover={true}
-          particleHoverFactor={2.5}
-          alphaParticles={true}
-          particleBaseSize={200}
-          sizeRandomness={2}
+          moveParticlesOnHover={false} // ⚡ DESACTIVADO (ahorra mucho procesamiento)
+          particleHoverFactor={0} // No necesario si hover está desactivado
+          alphaParticles={false} // ⚡ DESACTIVADO (ahorra procesamiento de transparencias)
+          particleBaseSize={180} // Ligeramente reducido
+          sizeRandomness={1.8} // Reducido
           cameraDistance={25}
         />
       </div>
-      {/* Partículas decorativas */}
-      <div className="absolute inset-0 -z-10 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+
+      {/* Partículas decorativas - OPTIMIZADO */}
+      <div className="absolute inset-0 -z-10 opacity-20"> {/* Reducida opacidad */}
+        {/* ⚡ Reducido blur de 3xl a 2xl (mejor rendimiento) */}
+        {/* ⚡ Eliminado animate-pulse en uno para reducir cálculos */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-2xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-2xl animate-pulse-slow" />
       </div>
 
-      {/* Contenedor principal que cambia de vertical a horizontal */}
+      {/* Contenedor principal */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-0 lg:gap-12 z-10 w-full max-w-5xl">
         
         {/* Contenido de texto */}
@@ -59,42 +61,25 @@ export default function Home() {
             />
           </div>
 
-          {/* Texto con gradiente animado */}
+          {/* Texto con gradiente animado - OPTIMIZADO */}
           <div className="relative pt-2">
             <p 
-              className="text-sm sm:text-base md:text-base lg:text-lg xl:text-xl max-w-lg mx-auto md:mx-0 leading-relaxed px-2 md:px-0"
-              style={{
-                backgroundImage: 'linear-gradient(to right, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa)',
-                backgroundSize: '300% 100%',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                color: 'transparent',
-                animation: 'gradientSlide 3s linear infinite',
-                fontWeight: '700'
-              }}
+              className="text-sm sm:text-base md:text-base lg:text-lg xl:text-xl max-w-lg mx-auto md:mx-0 leading-relaxed px-2 md:px-0 gradient-text"
             >
               Creo experiencias web modernas y escalables que transforman ideas en soluciones digitales impactantes.
             </p>
-            
-            <style>{`
-              @keyframes gradientSlide {
-                0% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
-                100% { background-position: 0% 50%; }
-              }
-            `}</style>
           </div>
 
-          {/* Botones de acción */}
+          {/* Botones de acción - OPTIMIZADO */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start pt-4">
             <Link to="/sobre-mi">
-              <button className="bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 hover:from-cyan-400 hover:via-blue-400 hover:to-indigo-500 transition-all duration-300 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base shadow-lg shadow-blue-500/30 hover:shadow-cyan-400/40 hover:scale-105 w-full sm:w-auto">
+              <button className="btn-primary w-full sm:w-auto">
                 Conoce más sobre mí 👤
               </button>
             </Link>
             
             <Link to="/portafolio">
-              <button className="bg-purple-800/50 hover:bg-purple-700/50 border-2 border-cyan-400/50 hover:border-cyan-400 transition-all duration-300 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:scale-105 w-full sm:w-auto">
+              <button className="btn-secondary w-full sm:w-auto">
                 Ver mis proyectos 🚀
               </button>
             </Link>
@@ -123,18 +108,20 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Imagen - Aparece arriba en móvil, a la derecha en escritorio */}
+        {/* Imagen - OPTIMIZADO */}
         <div className="relative flex justify-center items-center order-1 md:order-2 flex-shrink-0">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 blur-3xl animate-pulse"></div>
+          {/* ⚡ Reducido blur de 3xl a 2xl */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 blur-2xl animate-pulse-slow"></div>
           <img
             src="/kris.png"
             alt="Kris"
-            className="relative w-56 sm:w-64 md:w-64 lg:w-72 xl:w-80 rounded-full shadow-2xl shadow-blue-500/30 border-4 border-cyan-300/30 object-cover transition-transform duration-500 hover:scale-105 hover:border-cyan-300/50"
+            loading="lazy" // ⚡ IMPORTANTE: Lazy loading
+            className="relative w-56 sm:w-64 md:w-64 lg:w-72 xl:w-80 rounded-full shadow-2xl shadow-blue-500/30 border-4 border-cyan-300/30 object-cover hover-scale"
           />
         </div>
       </div>
 
-      {/* Stats rápidos móvil - Solo visible en móvil */}
+      {/* Stats rápidos móvil */}
       <div className="grid grid-cols-3 gap-6 pt-10 pb-8 max-w-sm md:hidden z-10">
         <div className="text-center">
           <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
@@ -155,6 +142,104 @@ export default function Home() {
           <div className="text-xs text-blue-100/60">Tecnologías</div>
         </div>
       </div>
+
+      {/* ⚡ ESTILOS OPTIMIZADOS - CSS con will-change para mejor rendimiento */}
+      <style>{`
+        /* Animación de gradiente optimizada */
+        .gradient-text {
+          background-image: linear-gradient(to right, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa);
+          background-size: 300% 100%;
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
+          animation: gradientSlide 3s linear infinite;
+          font-weight: 700;
+          will-change: background-position; /* ⚡ Mejor rendimiento */
+        }
+
+        @keyframes gradientSlide {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        /* Pulse más lento y eficiente */
+        .animate-pulse-slow {
+          animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.3; }
+        }
+
+        /* Hover optimizado con transform (más rápido que otras propiedades) */
+        .hover-scale {
+          transition: transform 0.3s ease;
+          will-change: transform; /* ⚡ Mejor rendimiento */
+        }
+
+        .hover-scale:hover {
+          transform: scale(1.05);
+        }
+
+        /* Botones optimizados */
+        .btn-primary {
+          background: linear-gradient(to right, #06b6d4, #3b82f6, #6366f1);
+          color: white;
+          padding: 0.625rem 2rem;
+          border-radius: 9999px;
+          font-weight: 600;
+          font-size: 0.875rem;
+          box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+          transition: all 0.3s ease;
+          will-change: transform, box-shadow;
+        }
+
+        .btn-primary:hover {
+          transform: scale(1.05);
+          box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.4);
+        }
+
+        .btn-secondary {
+          background: rgba(88, 28, 135, 0.5);
+          border: 2px solid rgba(34, 211, 238, 0.5);
+          color: white;
+          padding: 0.625rem 2rem;
+          border-radius: 9999px;
+          font-weight: 600;
+          font-size: 0.875rem;
+          transition: all 0.3s ease;
+          will-change: transform, border-color;
+        }
+
+        .btn-secondary:hover {
+          transform: scale(1.05);
+          border-color: rgb(34, 211, 238);
+        }
+
+        /* Media query para reducir animaciones en dispositivos móviles */
+        @media (max-width: 768px) {
+          .gradient-text {
+            animation: none; /* Sin animación en móvil */
+            background: linear-gradient(to right, #40ffaa, #4079ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+          }
+        }
+
+        /* Respetar preferencias de movimiento reducido */
+        @media (prefers-reduced-motion: reduce) {
+          .gradient-text,
+          .animate-pulse-slow,
+          .hover-scale,
+          .btn-primary,
+          .btn-secondary {
+            animation: none !important;
+            transition: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

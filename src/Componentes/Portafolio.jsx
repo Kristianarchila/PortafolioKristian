@@ -41,46 +41,49 @@ const proyectos = [
   {
     titulo: "Netflix Clone Landing Page",
     descripcion: "Clon de la página de inicio de Netflix practica de css posicionamiento.",
-    link: "netflix-h8gu.vercel.app",
+    link: "https://netflix-h8gu.vercel.app",
     imagen: "/Netflix.png",
     tecnologias: ["JavaScript", "CSS", "HTML", "Sass"]
   },
-  {titulo: "Gestión de Base de Datos con Laravel",
-  descripcion: "Proyecto CRUD desarrollado con Laravel y MySQL, utilizando migraciones para la creación automática de tablas y administración mediante phpMyAdmin.",
-  link: "/MySql.png", 
-  imagen: "/MySql.png", 
-  tecnologias: ["Laravel", "PHP", "MySQL", "phpMyAdmin"]} 
+  {
+    titulo: "Gestión de Base de Datos con Laravel",
+    descripcion: "Proyecto CRUD desarrollado con Laravel y MySQL, utilizando migraciones para la creación automática de tablas y administración mediante phpMyAdmin.",
+    link: "/MySql.png", 
+    imagen: "/MySql.png", 
+    tecnologias: ["Laravel", "PHP", "MySQL", "phpMyAdmin"]
+  } 
 ];
 
 export default function Portafolio() {
   return (
     <section className="relative min-h-screen py-20 px-6 md:px-24 overflow-hidden">
       
-       {/* 🌌 Fondo de partículas */}
+       {/* 🌌 Fondo de partículas - OPTIMIZADO */}
       <div className="absolute inset-0 -z-10 bg-purple-950">
         <Particles
-          particleCount={300}
-          particleSpread={10}
-          speed={0.3}
+          particleCount={60} // ⚡ Reducido de 300 a 60 (80% menos carga)
+          particleSpread={12}
+          speed={0.2} // ⚡ Reducido de 0.3 a 0.2
           particleColors={["#150e18ff", "#114888ff", "#041e68ff"]}
-          moveParticlesOnHover={true}
-          particleHoverFactor={2.5}
-          alphaParticles={true}
-          particleBaseSize={200}
-          sizeRandomness={2}
+          moveParticlesOnHover={false} // ⚡ DESACTIVADO
+          particleHoverFactor={0}
+          alphaParticles={false} // ⚡ DESACTIVADO
+          particleBaseSize={180}
+          sizeRandomness={1.8}
           cameraDistance={25}
         />
       </div>
       
-      {/* Partículas decorativas */}
-      <div className="absolute inset-0 -z-10 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+      {/* Partículas decorativas - OPTIMIZADO */}
+      <div className="absolute inset-0 -z-10 opacity-20">
+        {/* ⚡ Solo un blur animado, el otro estático */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-2xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-2xl animate-pulse-slow" />
       </div>
 
       <div className="max-w-7xl mx-auto">
         
-        {/* Header */}
+        {/* Header - OPTIMIZADO */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -95,7 +98,7 @@ export default function Portafolio() {
           </p>
         </motion.div>
 
-        {/* Grid de Proyectos */}
+        {/* Grid de Proyectos - OPTIMIZADO */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {proyectos.map((proyecto, index) => (
             <motion.a
@@ -106,15 +109,17 @@ export default function Portafolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="group relative bg-purple-900/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-blue-500/20 hover:border-cyan-400/50 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+              whileHover={{ y: -8 }} // ⚡ Mantenemos solo este hover (es eficiente)
+              className="group relative bg-purple-900/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-blue-500/20 hover:border-cyan-400/50 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30 project-card"
             >
-              {/* Imagen del proyecto */}
+              {/* Imagen del proyecto - OPTIMIZADO */}
               <div className="relative h-48 md:h-56 overflow-hidden bg-purple-950/50">
                 <img 
                   src={proyecto.imagen} 
-                  alt={proyecto.titulo} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  alt={proyecto.titulo}
+                  loading="lazy" // ⚡ IMPORTANTE: Lazy loading
+                  decoding="async" // ⚡ Decodificación asíncrona
+                  className="w-full h-full object-cover project-image"
                 />
                 {/* Overlay con gradiente */}
                 <div className="absolute inset-0 bg-gradient-to-t from-purple-900/90 via-purple-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
@@ -156,8 +161,70 @@ export default function Portafolio() {
           ))}
         </div>
       </div>
-    </section>
 
-    
+      {/* ⚡ ESTILOS OPTIMIZADOS */}
+      <style>{`
+        /* Pulse lento y eficiente */
+        .animate-pulse-slow {
+          animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.3; }
+        }
+
+        /* Optimización de imágenes con will-change */
+        .project-image {
+          transition: transform 0.5s ease;
+          will-change: transform;
+        }
+
+        .group:hover .project-image {
+          transform: scale(1.1);
+        }
+
+        /* Optimización de tarjetas */
+        .project-card {
+          will-change: transform;
+        }
+
+        /* Reducir animaciones en móvil */
+        @media (max-width: 768px) {
+          .project-image {
+            transition: transform 0.3s ease; /* Transición más rápida en móvil */
+          }
+          
+          .group:hover .project-image {
+            transform: scale(1.05); /* Menos zoom en móvil */
+          }
+        }
+
+        /* Respetar preferencias de movimiento reducido */
+        @media (prefers-reduced-motion: reduce) {
+          .animate-pulse-slow,
+          .project-image,
+          .project-card,
+          * {
+            animation: none !important;
+            transition: none !important;
+          }
+        }
+
+        /* Optimización de backdrop-blur en navegadores que lo soporten */
+        @supports (backdrop-filter: blur(10px)) {
+          .backdrop-blur-sm {
+            backdrop-filter: blur(8px);
+          }
+        }
+
+        /* Fallback para navegadores que no soportan backdrop-blur */
+        @supports not (backdrop-filter: blur(10px)) {
+          .backdrop-blur-sm {
+            background-color: rgba(88, 28, 135, 0.7);
+          }
+        }
+      `}</style>
+    </section>
   );
 }
