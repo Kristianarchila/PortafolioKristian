@@ -163,7 +163,7 @@ export default function Contacto() {
           <p className="text-blue-100/60 mb-4">O encuéntrame en:</p>
           <div className="flex justify-center gap-6">
             <a
-              href="https://github.com/tu-usuario"
+              href="https://github.com/Kristianarchila"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 bg-purple-900/40 backdrop-blur-sm rounded-full flex items-center justify-center border border-blue-500/20 hover:border-cyan-400/50 hover:scale-110 transition-all duration-300"
@@ -171,7 +171,7 @@ export default function Contacto() {
               <span className="text-2xl">💻</span>
             </a>
             <a
-              href="https://linkedin.com/in/tu-perfil"
+              href="https://www.linkedin.com/in/kristian-archila-34409718a/?trk=opento_sprofile_details"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 bg-purple-900/40 backdrop-blur-sm rounded-full flex items-center justify-center border border-blue-500/20 hover:border-cyan-400/50 hover:scale-110 transition-all duration-300"
@@ -179,7 +179,7 @@ export default function Contacto() {
               <span className="text-2xl">💼</span>
             </a>
             <a
-              href="mailto:tu@email.com"
+              href="#"
               className="w-12 h-12 bg-purple-900/40 backdrop-blur-sm rounded-full flex items-center justify-center border border-blue-500/20 hover:border-cyan-400/50 hover:scale-110 transition-all duration-300"
             >
               <span className="text-2xl">📧</span>
