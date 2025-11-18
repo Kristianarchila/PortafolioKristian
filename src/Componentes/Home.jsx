@@ -1,169 +1,254 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import RotatingText from "./AnimatedText";
 import Particles from "./Backgrods";
 
 export default function Home() {
-  return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 lg:px-24 pt-24 md:pt-0 overflow-hidden text-white">
+  const [hoveredService, setHoveredService] = useState(null);
 
-      {/* 🌌 Fondo de partículas - OPTIMIZADO */}
+  const servicios = [
+    {
+      icon: '🌐',
+      titulo: 'Desarrollo Web',
+      descripcion: 'Sitios modernos, rápidos y responsive',
+      tecnologias: 'React, Next.js, Tailwind'
+    },
+    {
+      icon: '⚙️',
+      titulo: 'Backend & APIs',
+      descripcion: 'Sistemas escalables y seguros',
+      tecnologias: 'Node.js, Python, MongoDB'
+    },
+    {
+      icon: '📱',
+      titulo: 'Aplicaciones Full-Stack',
+      descripcion: 'Soluciones completas de principio a fin',
+      tecnologias: 'MERN, MySQL, PostgreSQL'
+    },
+    {
+      icon: '🎨',
+      titulo: 'UI/UX Diseño',
+      descripcion: 'Interfaces intuitivas y atractivas',
+      tecnologias: 'Figma, Responsive Design'
+    }
+  ];
+
+  return (
+    <div className="relative bg-purple-950 text-white overflow-hidden">
+      
+      {/* 🌌 Fondo de partículas - IGUAL QUE TU VERSION */}
       <div className="absolute inset-0 -z-10 bg-purple-950">
         <Particles
-          particleCount={80} // ⚡ Reducido de 300 a 80 (75% menos carga)
-          particleSpread={12} // Aumentado para mejor cobertura con menos partículas
-          speed={0.2} // ⚡ Reducido de 0.3 a 0.2 (menos cálculos)
+          particleCount={80}
+          particleSpread={12}
+          speed={0.2}
           particleColors={["#150e18ff", "#114888ff", "#041e68ff"]}
-          moveParticlesOnHover={false} // ⚡ DESACTIVADO (ahorra mucho procesamiento)
-          particleHoverFactor={0} // No necesario si hover está desactivado
-          alphaParticles={false} // ⚡ DESACTIVADO (ahorra procesamiento de transparencias)
-          particleBaseSize={180} // Ligeramente reducido
-          sizeRandomness={1.8} // Reducido
+          moveParticlesOnHover={false}
+          particleHoverFactor={0}
+          alphaParticles={false}
+          particleBaseSize={180}
+          sizeRandomness={1.8}
           cameraDistance={25}
         />
       </div>
 
-      {/* Partículas decorativas - OPTIMIZADO */}
-      <div className="absolute inset-0 -z-10 opacity-20"> {/* Reducida opacidad */}
-        {/* ⚡ Reducido blur de 3xl a 2xl (mejor rendimiento) */}
-        {/* ⚡ Eliminado animate-pulse en uno para reducir cálculos */}
+      {/* Partículas decorativas */}
+      <div className="absolute inset-0 -z-10 opacity-20">
         <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-2xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-2xl animate-pulse-slow" />
       </div>
 
-      {/* Contenedor principal */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-0 lg:gap-12 z-10 w-full max-w-5xl">
-        
-        {/* Contenido de texto */}
-        <div className="flex flex-col justify-center text-center md:text-left space-y-3 sm:space-y-4 w-full md:w-auto md:flex-1 order-2 md:order-1">
+      {/* ============================================ */}
+      {/* HERO SECTION - VERSIÓN ORIENTADA A CLIENTES */}
+      {/* ============================================ */}
+      <section className="relative min-h-screen flex items-center justify-center px-6 md:px-24 py-20">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           
-          {/* Saludo Principal */}
-          <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
-            Hola, soy <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">Kris</span> 👋
-          </h1>
+          {/* Contenido principal */}
+          <div className="space-y-6 text-center md:text-left order-2 md:order-1">
+            
+            {/* Badge de disponibilidad */}
+            <div className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-400/30 rounded-full text-cyan-400 text-sm font-semibold mb-4">
+              ✨ Disponible para proyectos
+            </div>
+            
+            {/* Título principal - ENFOCADO EN VALOR */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+              Convierto ideas en{' '}
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                aplicaciones web
+              </span>{' '}
+              que funcionan
+            </h1>
+            
+            {/* Subtítulo con propuesta de valor clara */}
+            <p className="text-lg md:text-xl text-blue-100/80 leading-relaxed max-w-xl">
+              Desarrollo soluciones <strong>full-stack escalables</strong> con React, Node.js y bases de datos modernas. 
+              Desde landing pages hasta sistemas completos.
+            </p>
 
-          {/* Texto Rotativo */}
-          <div className="min-h-12 sm:min-h-16 flex items-center justify-center md:justify-start">
-            <RotatingText
-              texts={[
-                "Desarrollador Full-Stack 💻",
-                "Diseñador Web 🎨",
-                "Apasionado por la Tecnología ⚡",
-              ]}
-              mainClassName="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold"
-              splitLevelClassName=""
-              elementLevelClassName="inline-block"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              staggerFrom="first"
-              staggerDuration={0.05}
-              rotationInterval={5000}
-            />
+            {/* Estadísticas rápidas */}
+            <div className="flex flex-wrap gap-6 justify-center md:justify-start py-4">
+              <div>
+                <div className="text-3xl font-bold text-cyan-400">2+</div>
+                <div className="text-sm text-blue-100/60">Años</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-cyan-400">5+</div>
+                <div className="text-sm text-blue-100/60">Proyectos</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-cyan-400">100%</div>
+                <div className="text-sm text-blue-100/60">Satisfacción</div>
+              </div>
+            </div>
+
+            {/* CTAs PRINCIPALES - MUY IMPORTANTE */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+              <a 
+                href="mailto:kristianarchila65@gmail.com"
+                className="btn-primary-cta"
+              >
+                Contratar ahora 💼
+              </a>
+              <Link 
+                to="/portafolio"
+                className="btn-secondary-cta"
+              >
+                Ver proyectos 🚀
+              </Link>
+            </div>
+
+            {/* Stack tecnológico */}
+            <div className="flex flex-wrap gap-3 pt-6 justify-center md:justify-start">
+              <span className="px-3 py-1 bg-blue-500/20 rounded-full text-sm border border-blue-400/30">React</span>
+              <span className="px-3 py-1 bg-green-500/20 rounded-full text-sm border border-green-400/30">Node.js</span>
+              <span className="px-3 py-1 bg-blue-400/20 rounded-full text-sm border border-blue-300/30">Python</span>
+              <span className="px-3 py-1 bg-emerald-500/20 rounded-full text-sm border border-emerald-400/30">MongoDB</span>
+              <span className="px-3 py-1 bg-cyan-500/20 rounded-full text-sm border border-cyan-400/30">MySQL</span>
+            </div>
           </div>
 
-          {/* Texto con gradiente animado - OPTIMIZADO */}
-          <div className="relative pt-2">
-            <p 
-              className="text-sm sm:text-base md:text-base lg:text-lg xl:text-xl max-w-lg mx-auto md:mx-0 leading-relaxed px-2 md:px-0 gradient-text"
-            >
-              Creo experiencias web modernas y escalables que transforman ideas en soluciones digitales impactantes.
+          {/* Imagen - MANTIENE TU DISEÑO */}
+          <div className="relative flex justify-center items-center order-1 md:order-2">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 blur-2xl animate-pulse-slow" />
+            <img
+              src="/kris.png"
+              alt="Kris - Desarrollador Full Stack"
+              loading="lazy"
+              className="relative w-64 sm:w-80 md:w-80 lg:w-96 rounded-full shadow-2xl shadow-blue-500/30 border-4 border-cyan-300/30 object-cover hover-scale"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ================================ */}
+      {/* NUEVA SECCIÓN: QUÉ HAGO */}
+      {/* ================================ */}
+      <section className="relative px-6 md:px-24 py-20 bg-purple-900/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              ¿Qué puedo hacer por ti?
+            </h2>
+            <p className="text-xl text-blue-100/70">
+              Servicios especializados para llevar tu proyecto al siguiente nivel
             </p>
           </div>
 
-          {/* Botones de acción - OPTIMIZADO */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start pt-4">
-            <Link to="/sobre-mi">
-              <button className="btn-primary w-full sm:w-auto">
-                Conoce más sobre mí 👤
-              </button>
-            </Link>
-            
-            <Link to="/portafolio">
-              <button className="btn-secondary w-full sm:w-auto">
-                Ver mis proyectos 🚀
-              </button>
-            </Link>
-          </div>
-
-          {/* Stats rápidos - Solo visible en escritorio */}
-          <div className="hidden md:grid grid-cols-3 gap-4 pt-6 max-w-md">
-            <div className="text-center md:text-left">
-              <div className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                2+
+          <div className="grid md:grid-cols-2 gap-6">
+            {servicios.map((servicio, index) => (
+              <div
+                key={index}
+                onMouseEnter={() => setHoveredService(index)}
+                onMouseLeave={() => setHoveredService(null)}
+                className={`
+                  relative p-8 rounded-2xl bg-purple-900/40 border-2 cursor-pointer
+                  ${hoveredService === index ? 'border-cyan-400 scale-105' : 'border-blue-500/30'}
+                  transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/20
+                `}
+              >
+                <div className="text-5xl mb-4">{servicio.icon}</div>
+                <h3 className="text-2xl font-bold mb-2 text-white">{servicio.titulo}</h3>
+                <p className="text-blue-100/70 mb-4">{servicio.descripcion}</p>
+                <div className="text-sm text-cyan-400 font-semibold">
+                  {servicio.tecnologias}
+                </div>
               </div>
-              <div className="text-xs lg:text-sm text-blue-100/60">Años</div>
-            </div>
-            <div className="text-center md:text-left">
-              <div className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                5+
-              </div>
-              <div className="text-xs lg:text-sm text-blue-100/60">Proyectos</div>
-            </div>
-            <div className="text-center md:text-left">
-              <div className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                10+
-              </div>
-              <div className="text-xs lg:text-sm text-blue-100/60">Tecnologías</div>
-            </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* Imagen - OPTIMIZADO */}
-        <div className="relative flex justify-center items-center order-1 md:order-2 flex-shrink-0">
-          {/* ⚡ Reducido blur de 3xl a 2xl */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 blur-2xl animate-pulse-slow"></div>
-          <img
-            src="/kris.png"
-            alt="Kris"
-            loading="lazy" // ⚡ IMPORTANTE: Lazy loading
-            className="relative w-56 sm:w-64 md:w-64 lg:w-72 xl:w-80 rounded-full shadow-2xl shadow-blue-500/30 border-4 border-cyan-300/30 object-cover hover-scale"
-          />
+      {/* ================================ */}
+      {/* POR QUÉ TRABAJAR CONMIGO */}
+      {/* ================================ */}
+      <section className="relative px-6 md:px-24 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+            ¿Por qué elegirme?
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="p-6 bg-purple-900/30 rounded-2xl border border-blue-500/20">
+              <div className="text-4xl mb-3">⚡</div>
+              <h3 className="text-xl font-bold mb-2">Entrega rápida</h3>
+              <p className="text-blue-100/70">
+                Código limpio y optimizado en tiempos acordados
+              </p>
+            </div>
+            <div className="p-6 bg-purple-900/30 rounded-2xl border border-blue-500/20">
+              <div className="text-4xl mb-3">💬</div>
+              <h3 className="text-xl font-bold mb-2">Comunicación clara</h3>
+              <p className="text-blue-100/70">
+                Actualizaciones constantes durante el desarrollo
+              </p>
+            </div>
+            <div className="p-6 bg-purple-900/30 rounded-2xl border border-blue-500/20">
+              <div className="text-4xl mb-3">🎯</div>
+              <h3 className="text-xl font-bold mb-2">Enfoque en resultados</h3>
+              <p className="text-blue-100/70">
+                Soluciones que realmente resuelven problemas
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Stats rápidos móvil */}
-      <div className="grid grid-cols-3 gap-6 pt-10 pb-8 max-w-sm md:hidden z-10">
-        <div className="text-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-            2+
+      {/* ================================ */}
+      {/* CTA FINAL - MUY IMPORTANTE */}
+      {/* ================================ */}
+      <section className="relative px-6 md:px-24 py-20">
+        <div className="max-w-4xl mx-auto text-center bg-gradient-to-r from-purple-900/60 to-blue-900/60 backdrop-blur-sm rounded-3xl p-12 border border-cyan-400/30">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            ¿Tienes un proyecto en mente?
+          </h2>
+          <p className="text-xl text-blue-100/80 mb-8">
+            Hablemos sobre cómo puedo ayudarte a hacerlo realidad
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="mailto:kristianarchila65@gmail.com"
+              className="btn-cta-final-email"
+            >
+              Contactar ahora ✉️
+            </a>
+            <a 
+              href="https://wa.me/56985622986"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-cta-final-whatsapp"
+            >
+              WhatsApp 📱
+            </a>
           </div>
-          <div className="text-xs text-blue-100/60">Años</div>
         </div>
-        <div className="text-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-            5+
-          </div>
-          <div className="text-xs text-blue-100/60">Proyectos</div>
-        </div>
-        <div className="text-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-            10+
-          </div>
-          <div className="text-xs text-blue-100/60">Tecnologías</div>
-        </div>
-      </div>
+      </section>
 
-      {/* ⚡ ESTILOS OPTIMIZADOS - CSS con will-change para mejor rendimiento */}
+      {/* ============================================ */}
+      {/* ESTILOS - MANTIENE TUS ANIMACIONES */}
+      {/* ============================================ */}
       <style>{`
-        /* Animación de gradiente optimizada */
-        .gradient-text {
-          background-image: linear-gradient(to right, #40ffaa, #4079ff, #40ffaa, #4079ff, #40ffaa);
-          background-size: 300% 100%;
-          background-clip: text;
-          -webkit-background-clip: text;
-          color: transparent;
-          animation: gradientSlide 3s linear infinite;
-          font-weight: 700;
-          will-change: background-position; /* ⚡ Mejor rendimiento */
-        }
-
-        @keyframes gradientSlide {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-
-        /* Pulse más lento y eficiente */
+        /* Animaciones existentes */
         .animate-pulse-slow {
           animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
@@ -173,73 +258,106 @@ export default function Home() {
           50% { opacity: 0.3; }
         }
 
-        /* Hover optimizado con transform (más rápido que otras propiedades) */
         .hover-scale {
-          transition: transform 0.3s ease;
-          will-change: transform; /* ⚡ Mejor rendimiento */
+          transition: transform 0.5s ease;
+          will-change: transform;
         }
 
         .hover-scale:hover {
           transform: scale(1.05);
         }
 
-        /* Botones optimizados */
-        .btn-primary {
+        /* NUEVOS ESTILOS PARA CTAs */
+        .btn-primary-cta {
+          display: inline-block;
+          padding: 1rem 2.5rem;
           background: linear-gradient(to right, #06b6d4, #3b82f6, #6366f1);
-          color: white;
-          padding: 0.625rem 2rem;
           border-radius: 9999px;
-          font-weight: 600;
-          font-size: 0.875rem;
-          box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+          font-weight: 700;
+          font-size: 1.125rem;
+          color: white;
+          box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
           transition: all 0.3s ease;
-          will-change: transform, box-shadow;
+          text-align: center;
         }
 
-        .btn-primary:hover {
+        .btn-primary-cta:hover {
           transform: scale(1.05);
-          box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.4);
+          box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.5);
         }
 
-        .btn-secondary {
+        .btn-secondary-cta {
+          display: inline-block;
+          padding: 1rem 2.5rem;
           background: rgba(88, 28, 135, 0.5);
           border: 2px solid rgba(34, 211, 238, 0.5);
-          color: white;
-          padding: 0.625rem 2rem;
           border-radius: 9999px;
-          font-weight: 600;
-          font-size: 0.875rem;
+          font-weight: 700;
+          font-size: 1.125rem;
+          color: white;
           transition: all 0.3s ease;
-          will-change: transform, border-color;
+          text-align: center;
         }
 
-        .btn-secondary:hover {
+        .btn-secondary-cta:hover {
           transform: scale(1.05);
           border-color: rgb(34, 211, 238);
         }
 
-        /* Media query para reducir animaciones en dispositivos móviles */
-        @media (max-width: 768px) {
-          .gradient-text {
-            animation: none; /* Sin animación en móvil */
-            background: linear-gradient(to right, #40ffaa, #4079ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-          }
+        .btn-cta-final-email {
+          display: inline-block;
+          padding: 1rem 2.5rem;
+          background: linear-gradient(to right, #06b6d4, #3b82f6);
+          border-radius: 9999px;
+          font-weight: 700;
+          font-size: 1.125rem;
+          color: white;
+          box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.4);
+          transition: all 0.3s ease;
+        }
+
+        .btn-cta-final-email:hover {
+          transform: scale(1.05);
+          box-shadow: 0 20px 25px -5px rgba(6, 182, 212, 0.5);
+        }
+
+        .btn-cta-final-whatsapp {
+          display: inline-block;
+          padding: 1rem 2.5rem;
+          background: #25D366;
+          border-radius: 9999px;
+          font-weight: 700;
+          font-size: 1.125rem;
+          color: white;
+          box-shadow: 0 10px 15px -3px rgba(37, 211, 102, 0.4);
+          transition: all 0.3s ease;
+        }
+
+        .btn-cta-final-whatsapp:hover {
+          transform: scale(1.05);
+          box-shadow: 0 20px 25px -5px rgba(37, 211, 102, 0.5);
         }
 
         /* Respetar preferencias de movimiento reducido */
         @media (prefers-reduced-motion: reduce) {
-          .gradient-text,
           .animate-pulse-slow,
           .hover-scale,
-          .btn-primary,
-          .btn-secondary {
+          .btn-primary-cta,
+          .btn-secondary-cta,
+          .btn-cta-final-email,
+          .btn-cta-final-whatsapp {
             animation: none !important;
             transition: none !important;
           }
         }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+          .hover-scale:hover {
+            transform: scale(1.02);
+          }
+        }
       `}</style>
-    </section>
+    </div>
   );
 }
