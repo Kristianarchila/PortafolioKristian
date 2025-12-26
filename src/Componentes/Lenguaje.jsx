@@ -33,12 +33,12 @@ export default function Tecnologias() {
   ];
 
   const categories = [
-    { id: 'all', name: 'Todas', icon: '🚀' },
-    { id: 'frontend', name: 'Frontend', icon: '🎨' },
-    { id: 'backend', name: 'Backend', icon: '⚙️' },
-    { id: 'database', name: 'Base de Datos', icon: '💾' },
-    { id: 'cms', name: 'CMS', icon: '📝' },
-    { id: 'apis', name: 'APIs', icon: '🔌' },
+    { id: 'all', name: 'all', icon: '🚀' },
+    { id: 'frontend', name: 'frontend', icon: '🎨' },
+    { id: 'backend', name: 'backend', icon: '⚙️' },
+    { id: 'database', name: 'database', icon: '💾' },
+    { id: 'cms', name: 'cms', icon: '📝' },
+    { id: 'apis', name: 'apis', icon: '🔌' },
   ];
 
   const filteredTechs = selectedCategory === 'all' 
@@ -48,52 +48,56 @@ export default function Tecnologias() {
   return (
     <section className="relative min-h-screen py-20 px-6 md:px-24 overflow-hidden">
       
-      {/* 🌌 Fondo de partículas - OPTIMIZADO */}
-      <div className="absolute inset-0 -z-10 bg-purple-950">
+      {/* 🌌 Fondo de partículas - TECH STYLE */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-gray-900 to-blue-950">
         <Particles
-          particleCount={60} // ⚡ Reducido de 300 a 60 (80% menos)
+          particleCount={60}
           particleSpread={12}
-          speed={0.2} // ⚡ Reducido de 0.3 a 0.2
-          particleColors={["#150e18ff", "#114888ff", "#041e68ff"]}
-          moveParticlesOnHover={false} // ⚡ DESACTIVADO
+          speed={0.2}
+          particleColors={["#1a1a1aff", "#0a4a6aff", "#0c2d48ff"]}
+          moveParticlesOnHover={false}
           particleHoverFactor={0}
-          alphaParticles={false} // ⚡ DESACTIVADO
+          alphaParticles={false}
           particleBaseSize={180}
           sizeRandomness={1.8}
           cameraDistance={25}
         />
       </div>
       
-      {/* Partículas decorativas - OPTIMIZADO */}
+      {/* Partículas decorativas */}
       <div className="absolute inset-0 -z-10 opacity-20">
-        {/* ⚡ Solo uno animado, blur reducido */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-2xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-2xl animate-pulse-slow" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gray-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto">
         
-        {/* Header */}
+        {/* Header - TECH STYLE */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 font-mono"
         >
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            Stack Tecnológico
+          <div className="text-cyan-400 text-sm mb-2">{'<tech_stack>'}</div>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
+            const stack<span className="text-purple-400"> = </span>
+            <span className="text-cyan-400">[</span>
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">...</span>
+            <span className="text-cyan-400">]</span>
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100/80 max-w-3xl mx-auto">
-            Herramientas y tecnologías que domino para crear soluciones completas
+          <p className="text-xl md:text-2xl text-gray-400">
+            <span className="text-purple-400">//</span> Tools & technologies I master
           </p>
         </motion.div>
 
-        {/* Filtros por categoría - OPTIMIZADO */}
+        {/* Filtros por categoría - TECH STYLE */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-12 font-mono"
         >
           {categories.map((category) => (
             <button
@@ -109,56 +113,65 @@ export default function Tecnologias() {
           ))}
         </motion.div>
 
-        {/* Grid de Tecnologías - OPTIMIZADO con AnimatePresence */}
+        {/* Grid de Tecnologías - TECH STYLE */}
         <AnimatePresence mode="wait">
           <motion.div 
-            key={selectedCategory} // ⚡ Key para re-renderizar suavemente
+            key={selectedCategory}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }} // ⚡ Transición más rápida
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6"
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4"
           >
             {filteredTechs.map((tech, index) => (
               <motion.div
                 key={tech.name}
-                initial={{ opacity: 0, scale: 0.9 }} // ⚡ Scale reducido de 0.8 a 0.9
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ 
-                  duration: 0.3, // ⚡ Reducido de 0.4 a 0.3
-                  delay: index * 0.03 // ⚡ Reducido de 0.05 a 0.03
+                  duration: 0.3,
+                  delay: index * 0.03
                 }}
-                whileHover={{ scale: 1.08, y: -6 }} // ⚡ Reducido scale y y
+                whileHover={{ scale: 1.05, y: -4 }}
                 className="tech-card"
               >
+                {/* Número de índice */}
+                <div className="absolute top-2 right-2 text-xs text-gray-600">
+                  #{index + 1}
+                </div>
+
                 {/* Icono */}
                 <div className="tech-icon">
                   {tech.icon}
                 </div>
 
                 {/* Nombre */}
-                <h3 className={`text-lg md:text-xl font-bold bg-gradient-to-r ${tech.color} bg-clip-text text-transparent`}>
+                <h3 className={`text-base md:text-lg font-bold bg-gradient-to-r ${tech.color} bg-clip-text text-transparent`}>
                   {tech.name}
                 </h3>
 
-                {/* Efecto de brillo en hover */}
-                <div className="tech-card-glow" />
+                {/* Línea decorativa */}
+                <div className="tech-line" />
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
 
-        {/* Sección de habilidades adicionales - OPTIMIZADO */}
+        {/* Sección de habilidades adicionales - TECH STYLE */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }} // ⚡ Reducido de 0.4 a 0.3
-          className="mt-20 text-center"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">
-            Otras Habilidades
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="text-center mb-10 font-mono">
+            <div className="text-cyan-400 text-sm mb-2">{'<additional_skills>'}</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              skills<span className="text-cyan-400">.</span>additional<span className="text-purple-400">()</span>
+            </h2>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-3 font-mono">
             {[
               'Responsive Design',
               'Git & GitHub',
@@ -171,40 +184,51 @@ export default function Tecnologias() {
             ].map((skill, index) => (
               <motion.span
                 key={skill}
-                initial={{ opacity: 0, scale: 0.9 }} // ⚡ Reducido de 0.8 a 0.9
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ 
-                  delay: 0.4 + index * 0.03, // ⚡ Reducido de 0.5 y 0.05 a 0.4 y 0.03
-                  duration: 0.3 // ⚡ Duración más corta
+                  delay: 0.4 + index * 0.03,
+                  duration: 0.3
                 }}
                 className="skill-badge"
               >
+                <span className="text-gray-500 text-xs mr-1">$</span>
                 {skill}
               </motion.span>
             ))}
           </div>
+          
+          <div className="text-cyan-400 text-sm text-center mt-8 font-mono">{'</additional_skills>'}</div>
         </motion.div>
 
-        {/* Call to Action - OPTIMIZADO */}
+        {/* Call to Action - TECH STYLE */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }} // ⚡ Reducido de 0.6 a 0.5
-          className="mt-20 text-center"
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-20 text-center font-mono"
         >
-          <p className="text-xl text-blue-100/80 mb-6">
-            ¿Tienes un proyecto en mente?
-          </p>
-          <Link to="/contacto">
-            <button className="cta-btn">
-              ¡Trabajemos juntos! 🚀
-            </button>
-          </Link>
+          <div className="bg-black/40 border-2 border-cyan-400/30 p-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 mb-2">
+              <span className="text-purple-400">if</span> (project<span className="text-purple-400">.</span>status <span className="text-purple-400">===</span> <span className="text-yellow-400">'pending'</span>) <span className="text-cyan-400">{'{'}</span>
+            </p>
+            <p className="text-lg text-cyan-400 mb-6 ml-4">
+              contact<span className="text-purple-400">.</span>me<span className="text-yellow-400">()</span>;
+            </p>
+            <Link to="/contacto">
+              <button className="cta-btn">
+                start_project()
+              </button>
+            </Link>
+            <p className="text-xl text-cyan-400 mt-6">
+              <span className="text-cyan-400">{'}'}</span>
+            </p>
+          </div>
         </motion.div>
 
       </div>
 
-      {/* ⚡ ESTILOS OPTIMIZADOS */}
+      {/* ESTILOS TECH */}
       <style>{`
         /* Pulse lento */
         .animate-pulse-slow {
@@ -216,120 +240,117 @@ export default function Tecnologias() {
           50% { opacity: 0.3; }
         }
 
-        /* Botones de categoría optimizados */
+        /* Botones de categoría tech */
         .category-btn {
-          padding: 0.75rem 1.5rem;
-          border-radius: 9999px;
+          padding: 0.5rem 1.25rem;
           font-weight: 600;
           transition: all 0.3s ease;
-          background: rgba(88, 28, 135, 0.5);
-          color: rgba(219, 234, 254, 0.7);
-          will-change: transform, background-color;
+          background: rgba(0, 0, 0, 0.6);
+          color: rgba(156, 163, 175, 0.9);
+          border: 2px solid rgba(107, 114, 128, 0.3);
+          will-change: transform, background-color, border-color;
         }
 
         .category-btn:hover {
-          background: rgba(107, 33, 168, 0.5);
-          color: white;
+          background: rgba(0, 0, 0, 0.8);
+          color: #22d3ee;
+          border-color: rgba(34, 211, 238, 0.5);
         }
 
         .category-btn-active {
-          background: linear-gradient(to right, #06b6d4, #3b82f6, #6366f1);
-          color: white;
-          box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5);
+          background: rgba(6, 182, 212, 0.2);
+          color: #22d3ee;
+          border-color: #22d3ee;
           transform: scale(1.05);
         }
 
-        /* Tarjetas de tecnología optimizadas */
+        /* Tarjetas de tecnología tech */
         .tech-card {
           position: relative;
-          background: rgba(88, 28, 135, 0.4);
+          background: rgba(0, 0, 0, 0.6);
           backdrop-filter: blur(8px);
-          border-radius: 1rem;
-          padding: 1.5rem;
-          border: 1px solid rgba(59, 130, 246, 0.2);
+          padding: 1.5rem 1rem;
+          border: 2px solid rgba(59, 130, 246, 0.3);
           transition: all 0.3s ease;
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           text-align: center;
-          will-change: transform, border-color, box-shadow;
+          will-change: transform, border-color;
         }
 
         .tech-card:hover {
-          border-color: rgba(34, 211, 238, 0.5);
-          box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.3);
+          border-color: rgba(34, 211, 238, 0.7);
+          background: rgba(34, 211, 238, 0.05);
         }
 
         /* Icono de tecnología */
         .tech-icon {
-          font-size: 3rem;
-          margin-bottom: 1rem;
+          font-size: 2.5rem;
+          margin-bottom: 0.75rem;
           transition: transform 0.3s ease;
           will-change: transform;
         }
 
         .tech-card:hover .tech-icon {
-          transform: scale(1.15); /* ⚡ Reducido de 1.25 a 1.15 */
+          transform: scale(1.15);
         }
 
-        /* Efecto de brillo */
-        .tech-card-glow {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to right, transparent, rgba(59, 130, 246, 0.1), transparent);
-          border-radius: 1rem;
+        /* Línea decorativa tech */
+        .tech-line {
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(to right, transparent, rgba(34, 211, 238, 0.5), transparent);
+          margin-top: 0.75rem;
           opacity: 0;
           transition: opacity 0.3s ease;
-          pointer-events: none;
         }
 
-        .tech-card:hover .tech-card-glow {
+        .tech-card:hover .tech-line {
           opacity: 1;
         }
 
-        /* Badges de habilidades */
+        /* Badges de habilidades tech */
         .skill-badge {
-          padding: 0.75rem 1.5rem;
-          background: linear-gradient(to right, rgba(88, 28, 135, 0.5), rgba(59, 7, 100, 0.5));
+          padding: 0.5rem 1rem;
+          background: rgba(0, 0, 0, 0.6);
           backdrop-filter: blur(8px);
-          border-radius: 9999px;
-          color: rgb(219, 234, 254);
+          color: rgb(209, 213, 219);
           font-weight: 500;
-          border: 1px solid rgba(59, 130, 246, 0.2);
+          font-size: 0.875rem;
+          border: 1px solid rgba(107, 114, 128, 0.3);
           transition: all 0.3s ease;
           display: inline-block;
           will-change: transform, border-color;
         }
 
         .skill-badge:hover {
-          border-color: rgba(34, 211, 238, 0.5);
+          border-color: rgba(34, 211, 238, 0.7);
           transform: scale(1.05);
+          color: #22d3ee;
         }
 
-        /* Botón CTA */
+        /* Botón CTA tech */
         .cta-btn {
-          background: linear-gradient(to right, #06b6d4, #3b82f6, #6366f1);
-          color: white;
-          padding: 1rem 2rem;
-          border-radius: 9999px;
-          font-weight: 600;
+          background: #06b6d4;
+          color: black;
+          padding: 0.875rem 2rem;
+          font-weight: 700;
           font-size: 1.125rem;
-          box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
           transition: all 0.3s ease;
-          will-change: transform, box-shadow;
+          will-change: transform;
         }
 
         .cta-btn:hover {
           transform: scale(1.05);
-          box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.4);
+          background: #22d3ee;
         }
 
         /* Reducir animaciones en móvil */
         @media (max-width: 768px) {
           .tech-icon {
-            font-size: 2.5rem;
+            font-size: 2rem;
           }
 
           .tech-card:hover .tech-icon {
@@ -343,7 +364,7 @@ export default function Tecnologias() {
           .category-btn,
           .tech-card,
           .tech-icon,
-          .tech-card-glow,
+          .tech-line,
           .skill-badge,
           .cta-btn,
           * {
@@ -361,7 +382,7 @@ export default function Tecnologias() {
 
         @supports not (backdrop-filter: blur(10px)) {
           .backdrop-blur-sm {
-            background-color: rgba(88, 28, 135, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
           }
         }
       `}</style>

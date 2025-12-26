@@ -20,12 +20,12 @@ export default function Contacto() {
       )
       .then(
         (result) => {
-          alert("¡Mensaje enviado con éxito! 🚀 Te responderé en menos de 24 horas.");
+          alert("✓ Message sent successfully! I'll respond within 24 hours.");
           form.current.reset();
           setIsSubmitting(false);
         },
         (error) => {
-          alert("Error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme por WhatsApp.");
+          alert("✗ Error sending message. Please try WhatsApp instead.");
           console.log(error.text);
           setIsSubmitting(false);
         }
@@ -34,13 +34,13 @@ export default function Contacto() {
 
   return (
     <section className="relative min-h-screen py-20 px-6 md:px-24 overflow-hidden flex items-center justify-center">
-       {/* 🌌 Fondo de partículas - Optimizado */}
-      <div className="absolute inset-0 -z-10 bg-purple-950">
+       {/* 🌌 Fondo de partículas - TECH STYLE */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-gray-900 to-blue-950">
         <Particles
           particleCount={30}
           particleSpread={10}
           speed={0.3}
-          particleColors={["#150e18ff", "#114888ff", "#041e68ff"]}
+          particleColors={["#1a1a1aff", "#0a4a6aff", "#0c2d48ff"]}
           moveParticlesOnHover={false}
           particleHoverFactor={0}
           alphaParticles={false}
@@ -51,219 +51,231 @@ export default function Contacto() {
       </div>
 
       {/* Partículas decorativas */}
-      <div className="absolute inset-0 -z-10 opacity-30">
+      <div className="absolute inset-0 -z-10 opacity-20">
         <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gray-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full max-w-5xl">
-        {/* Header MEJORADO */}
+        {/* Header - TECH STYLE */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-12 font-mono"
         >
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            ¿Listo para trabajar juntos?
+          <div className="text-cyan-400 text-sm mb-2">{'<contact>'}</div>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
+            contact<span className="text-cyan-400">.</span>me<span className="text-purple-400">()</span>
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100/80 max-w-2xl mx-auto mb-6">
-            Cuéntame sobre tu proyecto y te responderé en menos de 24 horas
+          <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-6">
+            <span className="text-purple-400">//</span> Let's build something amazing together
           </p>
           
-          {/* Badge de disponibilidad */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-400/30 rounded-full text-green-400 text-sm font-semibold">
+          {/* Badge de disponibilidad - TECH STYLE */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/40 border border-green-400/50 text-green-400 text-sm font-mono">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            Disponible para nuevos proyectos
+            <span>status: <span className="text-white">available</span></span>
           </div>
         </motion.div>
 
         {/* Grid: Formulario + Contacto Directo */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           
-          {/* FORMULARIO - 2 columnas */}
+          {/* FORMULARIO - TECH STYLE */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-2 bg-purple-900/40 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-blue-500/20 shadow-2xl shadow-blue-500/10"
+            className="md:col-span-2 bg-black/60 backdrop-blur-sm p-8 md:p-10 border-2 border-gray-700 shadow-2xl font-mono"
           >
-            <h2 className="text-2xl font-bold mb-6 text-white">Envíame un mensaje</h2>
+            <div className="flex items-center gap-2 mb-6">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <span className="text-gray-400 text-sm ml-2">$ send_message.sh</span>
+            </div>
+
             <form ref={form} onSubmit={sendEmail} className="space-y-5">
               
               {/* Grid: Nombre + Email */}
               <div className="grid md:grid-cols-2 gap-5">
                 {/* Nombre */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-blue-100/80 mb-2">
-                    Nombre *
+                  <label htmlFor="name" className="block text-sm text-gray-400 mb-2">
+                    <span className="text-cyan-400">{'>'}</span> name:
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     required
-                    placeholder="Tu nombre"
-                    className="w-full px-4 py-3 rounded-xl bg-purple-950/50 border border-blue-500/20 text-white placeholder-blue-100/40 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-400/20 transition-all"
+                    placeholder="your_name"
+                    className="w-full px-4 py-3 bg-black/60 border border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-blue-100/80 mb-2">
-                    Email *
+                  <label htmlFor="email" className="block text-sm text-gray-400 mb-2">
+                    <span className="text-cyan-400">{'>'}</span> email:
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     required
-                    placeholder="tu@email.com"
-                    className="w-full px-4 py-3 rounded-xl bg-purple-950/50 border border-blue-500/20 text-white placeholder-blue-100/40 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-400/20 transition-all"
+                    placeholder="you@email.com"
+                    className="w-full px-4 py-3 bg-black/60 border border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
                   />
                 </div>
               </div>
 
-              {/* Tipo de proyecto (Select) - NUEVO */}
+              {/* Tipo de proyecto */}
               <div>
-                <label htmlFor="project_type" className="block text-sm font-medium text-blue-100/80 mb-2">
-                  Tipo de proyecto *
+                <label htmlFor="project_type" className="block text-sm text-gray-400 mb-2">
+                  <span className="text-cyan-400">{'>'}</span> project_type:
                 </label>
                 <select
                   id="project_type"
                   name="project_type"
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-purple-950/50 border border-blue-500/20 text-white focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-400/20 transition-all"
+                  className="w-full px-4 py-3 bg-black/60 border border-gray-600 text-white focus:outline-none focus:border-cyan-400 transition-all"
                 >
-                  <option value="">Selecciona una opción</option>
-                  <option value="web">Sitio web / Landing page</option>
-                  <option value="app">Aplicación web completa</option>
-                  <option value="backend">Backend / API</option>
-                  <option value="full">Proyecto Full-Stack</option>
-                  <option value="other">Otro</option>
+                  <option value="">--select option</option>
+                  <option value="web">website / landing_page</option>
+                  <option value="app">web_application</option>
+                  <option value="backend">backend / api</option>
+                  <option value="full">full_stack_project</option>
+                  <option value="other">other</option>
                 </select>
               </div>
 
-              {/* Mensaje - Más compacto */}
+              {/* Mensaje */}
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-blue-100/80 mb-2">
-                  Cuéntame sobre tu proyecto *
+                <label htmlFor="message" className="block text-sm text-gray-400 mb-2">
+                  <span className="text-cyan-400">{'>'}</span> message:
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
                   rows="5"
-                  placeholder="Describe brevemente qué necesitas, plazos, presupuesto aproximado..."
-                  className="w-full px-4 py-3 rounded-xl bg-purple-950/50 border border-blue-500/20 text-white placeholder-blue-100/40 focus:outline-none focus:border-cyan-400/50 focus:ring-2 focus:ring-cyan-400/20 transition-all resize-none"
+                  placeholder="// Describe your project, timeline, budget..."
+                  className="w-full px-4 py-3 bg-black/60 border border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all resize-none"
                 />
               </div>
 
-              {/* Botón */}
+              {/* Botón - TECH STYLE */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 hover:from-cyan-400 hover:via-blue-400 hover:to-indigo-500 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg shadow-blue-500/30 hover:shadow-cyan-400/40 transition-all duration-300 ${
+                className={`w-full bg-cyan-500 hover:bg-cyan-400 text-black px-8 py-4 font-bold text-lg transition-all duration-300 ${
                   isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:scale-[1.02]'
                 }`}
               >
-                {isSubmitting ? 'Enviando... ⏳' : 'Enviar Mensaje 🚀'}
+                {isSubmitting ? '$ sending...' : '$ submit_form()'}
               </button>
             </form>
           </motion.div>
 
-          {/* CONTACTO DIRECTO - 1 columna - NUEVO */}
+          {/* CONTACTO DIRECTO - TECH STYLE */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-6"
+            className="space-y-4 font-mono"
           >
-            {/* WhatsApp - PRIORIDAD */}
-            <div className="bg-gradient-to-br from-green-900/40 to-green-800/20 backdrop-blur-sm rounded-2xl p-6 border border-green-500/30 hover:border-green-400/50 transition-all hover:scale-105 cursor-pointer">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">📱</div>
+            {/* WhatsApp */}
+            <a 
+              href="https://wa.me/56985622986"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-black/60 border-2 border-green-500/50 hover:border-green-400 p-5 transition-all hover:scale-105"
+            >
+              <div className="flex items-start gap-3">
+                <div className="text-3xl">📱</div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-lg text-white mb-1">WhatsApp</h3>
-                  <p className="text-sm text-green-100/70 mb-3">Respuesta inmediata</p>
-                  <a 
-                    href="https://wa.me/56985622986"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all"
-                  >
-                    Chatear ahora
-                  </a>
+                  <h3 className="font-bold text-white mb-1 text-sm">whatsapp</h3>
+                  <p className="text-xs text-gray-400 mb-2">instant_response</p>
+                  <div className="text-green-400 text-xs font-bold">
+                    {'>'} chat_now()
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Email */}
-            <div className="bg-purple-900/40 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/20 hover:border-cyan-400/50 transition-all">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">✉️</div>
+            <div className="bg-black/60 border-2 border-gray-700 p-5">
+              <div className="flex items-start gap-3">
+                <div className="text-3xl">✉️</div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-lg text-white mb-1">Email</h3>
-                  <p className="text-sm text-blue-100/70 mb-2">Para propuestas formales</p>
+                  <h3 className="font-bold text-white mb-1 text-sm">email</h3>
+                  <p className="text-xs text-gray-400 mb-2">formal_proposals</p>
                   <a 
-                    href="kristianarchila65@gmail.com"
-                    className="text-cyan-400 hover:text-cyan-300 text-sm break-all"
+                    href="mailto:kristianarchila65@gmail.com"
+                    className="text-cyan-400 hover:text-cyan-300 text-xs break-all"
                   >
-                    kristianarchila65@gmail.com
+                    kristianarchila65@
+                    <br />gmail.com
                   </a>
                 </div>
               </div>
             </div>
 
             {/* LinkedIn */}
-            <div className="bg-purple-900/40 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/20 hover:border-cyan-400/50 transition-all">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">💼</div>
+            <a 
+              href="https://www.linkedin.com/in/kristian-archila-34409718a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-black/60 border-2 border-gray-700 hover:border-blue-400 p-5 transition-all"
+            >
+              <div className="flex items-start gap-3">
+                <div className="text-3xl">💼</div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-lg text-white mb-1">LinkedIn</h3>
-                  <p className="text-sm text-blue-100/70 mb-3">Conectemos profesionalmente</p>
-                  <a 
-                    href="https://www.linkedin.com/in/kristian-archila-34409718a/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-cyan-400 hover:text-cyan-300 text-sm font-semibold"
-                  >
-                    Ver perfil →
-                  </a>
+                  <h3 className="font-bold text-white mb-1 text-sm">linkedin</h3>
+                  <p className="text-xs text-gray-400 mb-2">professional_network</p>
+                  <div className="text-cyan-400 text-xs">
+                    {'>'} view_profile()
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* GitHub */}
-            <div className="bg-purple-900/40 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/20 hover:border-cyan-400/50 transition-all">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">💻</div>
+            <a 
+              href="https://github.com/Kristianarchila"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-black/60 border-2 border-gray-700 hover:border-purple-400 p-5 transition-all"
+            >
+              <div className="flex items-start gap-3">
+                <div className="text-3xl">💻</div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-lg text-white mb-1">GitHub</h3>
-                  <p className="text-sm text-blue-100/70 mb-3">Revisa mi código</p>
-                  <a 
-                    href="https://github.com/Kristianarchila"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-cyan-400 hover:text-cyan-300 text-sm font-semibold"
-                  >
-                    Ver repositorios →
-                  </a>
+                  <h3 className="font-bold text-white mb-1 text-sm">github</h3>
+                  <p className="text-xs text-gray-400 mb-2">view_source_code</p>
+                  <div className="text-cyan-400 text-xs">
+                    {'>'} explore_repos()
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Tiempo de respuesta */}
-            <div className="bg-cyan-900/20 backdrop-blur-sm rounded-2xl p-4 border border-cyan-500/30 text-center">
-              <p className="text-sm text-cyan-100/80">
-                ⏱️ <strong>Tiempo de respuesta:</strong> Menos de 24 horas
+            <div className="bg-cyan-500/10 border-2 border-cyan-400/30 p-4 text-center">
+              <p className="text-xs text-cyan-300">
+                <span className="text-gray-400">response_time:</span> {'<'} 24h
               </p>
             </div>
           </motion.div>
         </div>
-      </div>
 
-        
+        {/* Cerrar tag */}
+        <div className="text-cyan-400 text-sm text-center mt-8 font-mono">{'</contact>'}</div>
+      </div>
 
       {/* Estilos */}
       <style>{`

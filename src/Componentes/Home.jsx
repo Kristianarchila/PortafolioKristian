@@ -17,32 +17,32 @@ export default function Home() {
       icon: '⚙️',
       titulo: 'Backend & APIs',
       descripcion: 'Sistemas escalables y seguros',
-      tecnologias: 'Node.js, Python, MongoDB'
+      tecnologias: 'Node.js, Express, REST APIs'
+    },
+    {
+      icon: '🏢',
+      titulo: 'SaaS Multi-tenant',
+      descripcion: 'Arquitectura de roles y tenant isolation',
+      tecnologias: 'MERN Stack, MongoDB'
     },
     {
       icon: '📱',
       titulo: 'Aplicaciones Full-Stack',
       descripcion: 'Soluciones completas de principio a fin',
       tecnologias: 'MERN, MySQL, PostgreSQL'
-    },
-    {
-      icon: '🎨',
-      titulo: 'UI/UX Diseño',
-      descripcion: 'Interfaces intuitivas y atractivas',
-      tecnologias: 'Figma, Responsive Design'
     }
   ];
 
   return (
-    <div className="relative bg-purple-950 text-white overflow-hidden">
+    <div className="relative bg-gradient-to-br from-black via-gray-900 to-blue-950 text-white overflow-hidden">
       
-      {/* 🌌 Fondo de partículas - IGUAL QUE TU VERSION */}
-      <div className="absolute inset-0 -z-10 bg-purple-950">
+      {/* 🌌 Fondo de partículas */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-gray-900 to-blue-950">
         <Particles
           particleCount={80}
           particleSpread={12}
           speed={0.2}
-          particleColors={["#150e18ff", "#114888ff", "#041e68ff"]}
+          particleColors={["#1a1a1aff", "#0a4a6aff", "#0c2d48ff"]}
           moveParticlesOnHover={false}
           particleHoverFactor={0}
           alphaParticles={false}
@@ -54,12 +54,13 @@ export default function Home() {
 
       {/* Partículas decorativas */}
       <div className="absolute inset-0 -z-10 opacity-20">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-2xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-2xl animate-pulse-slow" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gray-500/10 rounded-full blur-3xl" />
       </div>
 
       {/* ============================================ */}
-      {/* HERO SECTION - VERSIÓN ORIENTADA A CLIENTES */}
+      {/* HERO SECTION - TECH STYLE */}
       {/* ============================================ */}
       <section className="relative min-h-screen flex items-center justify-center px-6 md:px-24 py-20">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -67,74 +68,89 @@ export default function Home() {
           {/* Contenido principal */}
           <div className="space-y-6 text-center md:text-left order-2 md:order-1">
             
-            {/* Badge de disponibilidad */}
-            <div className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-400/30 rounded-full text-cyan-400 text-sm font-semibold mb-4">
-              ✨ Disponible para proyectos
+            {/* Badge de disponibilidad - Tech style */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/40 border border-cyan-400/50 text-cyan-400 text-sm font-mono mb-4">
+              <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
+              <span>&lt;available_for_hire /&gt;</span>
             </div>
             
-            {/* Título principal - ENFOCADO EN VALOR */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
-              Convierto ideas en{' '}
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                aplicaciones web
-              </span>{' '}
-              que funcionan
+            {/* Título principal - TECH AESTHETIC */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight font-mono">
+              <span className="text-cyan-400">const</span>{' '}
+              <span className="text-white">developer</span>{' '}
+              <span className="text-purple-400">=</span>{' '}
+              <span className="text-blue-300">{'{'}</span>
+              <br />
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl ml-4 md:ml-8">
+                <span className="text-yellow-300">stack</span>
+                <span className="text-purple-400">:</span>{' '}
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                  'MERN + SaaS'
+                </span>
+              </span>
+              <br />
+              <span className="text-blue-300">{'}'}</span>
             </h1>
             
-            {/* Subtítulo con propuesta de valor clara */}
-            <p className="text-lg md:text-xl text-blue-100/80 leading-relaxed max-w-xl">
-              Desarrollo soluciones <strong>full-stack escalables</strong> con React, Node.js y bases de datos modernas. 
-              Desde landing pages hasta sistemas completos.
+            {/* Subtítulo tech */}
+            <p className="text-lg md:text-xl text-cyan-300/80 leading-relaxed max-w-xl font-mono">
+              <span className="text-gray-400">//</span> Full-Stack Developer | SaaS Multi-tenant Specialist
+              <br />
+              <span className="text-gray-400">//</span> MERN Stack • REST APIs • MongoDB
             </p>
 
-            {/* Estadísticas rápidas */}
-            <div className="flex flex-wrap gap-6 justify-center md:justify-start py-4">
-              <div>
-                <div className="text-3xl font-bold text-cyan-400">2+</div>
-                <div className="text-sm text-blue-100/60">Años</div>
+            {/* Estadísticas tech style */}
+            <div className="flex flex-wrap gap-6 justify-center md:justify-start py-4 font-mono">
+              <div className="bg-black/40 px-4 py-3 border border-cyan-400/30">
+                <div className="text-sm text-gray-400">experience:</div>
+                <div className="text-2xl font-bold text-cyan-400">2+ years</div>
               </div>
-              <div>
-                <div className="text-3xl font-bold text-cyan-400">5+</div>
-                <div className="text-sm text-blue-100/60">Proyectos</div>
+              <div className="bg-black/40 px-4 py-3 border border-blue-400/30">
+                <div className="text-sm text-gray-400">projects:</div>
+                <div className="text-2xl font-bold text-blue-400">5+ complete</div>
               </div>
-              <div>
-                <div className="text-3xl font-bold text-cyan-400">100%</div>
-                <div className="text-sm text-blue-100/60">Satisfacción</div>
+              <div className="bg-black/40 px-4 py-3 border border-green-400/30">
+                <div className="text-sm text-gray-400">specialty:</div>
+                <div className="text-xl font-bold text-green-400">SaaS</div>
               </div>
             </div>
 
-            {/* CTAs PRINCIPALES - MUY IMPORTANTE */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+            {/* CTAs tech style */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-6 font-mono">
               <a 
                 href="mailto:kristianarchila65@gmail.com"
-                className="btn-primary-cta"
+                className="group relative px-8 py-3 bg-cyan-500 text-black font-bold text-lg overflow-hidden transition-all hover:bg-cyan-400"
               >
-                Contratar ahora 💼
+                <span className="relative z-10">hire_developer()</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-300 to-blue-400 translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
               </a>
               <Link 
                 to="/portafolio"
-                className="btn-secondary-cta"
+                className="px-8 py-3 bg-transparent border-2 border-cyan-400 text-cyan-400 font-bold text-lg hover:bg-cyan-400/10 transition-all"
               >
-                Ver proyectos 🚀
+                view_projects()
               </Link>
             </div>
 
-            {/* Stack tecnológico */}
-            <div className="flex flex-wrap gap-3 pt-6 justify-center md:justify-start">
-              <span className="px-3 py-1 bg-blue-500/20 rounded-full text-sm border border-blue-400/30">React</span>
-              <span className="px-3 py-1 bg-green-500/20 rounded-full text-sm border border-green-400/30">Node.js</span>
-              <span className="px-3 py-1 bg-blue-400/20 rounded-full text-sm border border-blue-300/30">Python</span>
-              <span className="px-3 py-1 bg-emerald-500/20 rounded-full text-sm border border-emerald-400/30">MongoDB</span>
-              <span className="px-3 py-1 bg-cyan-500/20 rounded-full text-sm border border-cyan-400/30">MySQL</span>
+            {/* Stack tecnológico - Terminal style */}
+            <div className="pt-6 font-mono text-sm">
+              <div className="text-gray-400 mb-2">$ tech-stack --list</div>
+              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                <span className="px-3 py-1 bg-black/40 border border-blue-400/50 text-blue-400">React.js</span>
+                <span className="px-3 py-1 bg-black/40 border border-green-400/50 text-green-400">Node.js</span>
+                <span className="px-3 py-1 bg-black/40 border border-emerald-400/50 text-emerald-400">MongoDB</span>
+                <span className="px-3 py-1 bg-black/40 border border-yellow-400/50 text-yellow-400">Express</span>
+                <span className="px-3 py-1 bg-black/40 border border-cyan-400/50 text-cyan-400">REST APIs</span>
+              </div>
             </div>
           </div>
 
-          {/* Imagen - MANTIENE TU DISEÑO */}
+          {/* Imagen */}
           <div className="relative flex justify-center items-center order-1 md:order-2">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 blur-2xl animate-pulse-slow" />
             <img
               src="/kris.png"
-              alt="Kris - Desarrollador Full Stack"
+              alt="Kristian Archila - Full-Stack Developer"
               loading="lazy"
               className="relative w-64 sm:w-80 md:w-80 lg:w-96 rounded-full shadow-2xl shadow-blue-500/30 border-4 border-cyan-300/30 object-cover hover-scale"
             />
@@ -143,112 +159,128 @@ export default function Home() {
       </section>
 
       {/* ================================ */}
-      {/* NUEVA SECCIÓN: QUÉ HAGO */}
+      {/* SECCIÓN: SERVICIOS - TECH STYLE */}
       {/* ================================ */}
-      <section className="relative px-6 md:px-24 py-20 bg-purple-900/30">
+      <section className="relative px-6 md:px-24 py-20 bg-black/20">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              ¿Qué puedo hacer por ti?
+          <div className="text-center mb-16 font-mono">
+            <div className="text-cyan-400 text-sm mb-2">{'<services>'}</div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+              services<span className="text-cyan-400">.map()</span>
             </h2>
-            <p className="text-xl text-blue-100/70">
-              Servicios especializados para llevar tu proyecto al siguiente nivel
+            <p className="text-xl text-gray-400">
+              <span className="text-purple-400">return</span> scalable_solutions
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4">
             {servicios.map((servicio, index) => (
               <div
                 key={index}
                 onMouseEnter={() => setHoveredService(index)}
                 onMouseLeave={() => setHoveredService(null)}
                 className={`
-                  relative p-8 rounded-2xl bg-purple-900/40 border-2 cursor-pointer
-                  ${hoveredService === index ? 'border-cyan-400 scale-105' : 'border-blue-500/30'}
-                  transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/20
+                  relative p-6 bg-black/40 border-2 cursor-pointer font-mono
+                  ${hoveredService === index ? 'border-cyan-400 bg-cyan-400/5' : 'border-gray-700'}
+                  transition-all duration-300
                 `}
               >
-                <div className="text-5xl mb-4">{servicio.icon}</div>
-                <h3 className="text-2xl font-bold mb-2 text-white">{servicio.titulo}</h3>
-                <p className="text-blue-100/70 mb-4">{servicio.descripcion}</p>
-                <div className="text-sm text-cyan-400 font-semibold">
-                  {servicio.tecnologias}
+                <div className="flex items-start justify-between mb-4">
+                  <div className="text-4xl">{servicio.icon}</div>
+                  <div className={`text-xs px-2 py-1 border ${hoveredService === index ? 'border-cyan-400 text-cyan-400' : 'border-gray-600 text-gray-500'}`}>
+                    #{index + 1}
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-white">{servicio.titulo}</h3>
+                <p className="text-gray-400 mb-4 text-sm">{servicio.descripcion}</p>
+                <div className="text-xs text-cyan-400 border-l-2 border-cyan-400 pl-3">
+                  <span className="text-gray-500">tech:</span> {servicio.tecnologias}
                 </div>
               </div>
             ))}
           </div>
+          <div className="text-cyan-400 text-sm text-center mt-8 font-mono">{'</services>'}</div>
         </div>
       </section>
 
       {/* ================================ */}
-      {/* POR QUÉ TRABAJAR CONMIGO */}
+      {/* POR QUÉ TRABAJAR CONMIGO - TECH */}
       {/* ================================ */}
       <section className="relative px-6 md:px-24 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-            ¿Por qué elegirme?
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 bg-purple-900/30 rounded-2xl border border-blue-500/20">
-              <div className="text-4xl mb-3">⚡</div>
-              <h3 className="text-xl font-bold mb-2">Entrega rápida</h3>
-              <p className="text-blue-100/70">
-                Código limpio y optimizado en tiempos acordados
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12 font-mono">
+            <div className="text-cyan-400 text-sm mb-2">{'<advantages>'}</div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              why<span className="text-cyan-400">.</span>hire<span className="text-purple-400">(</span>me<span className="text-purple-400">)</span>
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4 font-mono">
+            <div className="bg-black/40 p-6 border-2 border-cyan-400/30 hover:border-cyan-400 transition-colors">
+              <div className="text-3xl mb-3 text-cyan-400">⚡</div>
+              <h3 className="text-lg font-bold mb-2 text-cyan-400">fast_delivery</h3>
+              <p className="text-gray-400 text-sm">
+                Clean code in agreed timeframes
               </p>
             </div>
-            <div className="p-6 bg-purple-900/30 rounded-2xl border border-blue-500/20">
-              <div className="text-4xl mb-3">💬</div>
-              <h3 className="text-xl font-bold mb-2">Comunicación clara</h3>
-              <p className="text-blue-100/70">
-                Actualizaciones constantes durante el desarrollo
+            <div className="bg-black/40 p-6 border-2 border-blue-400/30 hover:border-blue-400 transition-colors">
+              <div className="text-3xl mb-3 text-blue-400">💬</div>
+              <h3 className="text-lg font-bold mb-2 text-blue-400">clear_communication</h3>
+              <p className="text-gray-400 text-sm">
+                Constant updates throughout development
               </p>
             </div>
-            <div className="p-6 bg-purple-900/30 rounded-2xl border border-blue-500/20">
-              <div className="text-4xl mb-3">🎯</div>
-              <h3 className="text-xl font-bold mb-2">Enfoque en resultados</h3>
-              <p className="text-blue-100/70">
-                Soluciones que realmente resuelven problemas
+            <div className="bg-black/40 p-6 border-2 border-purple-400/30 hover:border-purple-400 transition-colors">
+              <div className="text-3xl mb-3 text-purple-400">🎯</div>
+              <h3 className="text-lg font-bold mb-2 text-purple-400">saas_specialist</h3>
+              <p className="text-gray-400 text-sm">
+                Multi-tenant architecture expert
               </p>
             </div>
           </div>
+          <div className="text-cyan-400 text-sm text-center mt-8 font-mono">{'</advantages>'}</div>
         </div>
       </section>
 
       {/* ================================ */}
-      {/* CTA FINAL - MUY IMPORTANTE */}
+      {/* CTA FINAL - TECH STYLE */}
       {/* ================================ */}
       <section className="relative px-6 md:px-24 py-20">
-        <div className="max-w-4xl mx-auto text-center bg-gradient-to-r from-purple-900/60 to-blue-900/60 backdrop-blur-sm rounded-3xl p-12 border border-cyan-400/30">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            ¿Tienes un proyecto en mente?
+        <div className="max-w-4xl mx-auto text-center bg-black/60 border-2 border-cyan-400/30 p-12 font-mono">
+          <p className="text-xl text-gray-400 mb-2">
+            <span className="text-purple-400">if</span> (project<span className="text-purple-400">.</span>status <span className="text-purple-400">===</span> <span className="text-yellow-400">'pending'</span>) <span className="text-cyan-400">{'{'}</span>
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 ml-4">
+            let's<span className="text-cyan-400">.</span>collaborate<span className="text-yellow-400">()</span>
           </h2>
-          <p className="text-xl text-blue-100/80 mb-8">
-            Hablemos sobre cómo puedo ayudarte a hacerlo realidad
+          <p className="text-lg text-gray-400 mb-8 ml-4">
+            <span className="text-gray-500">//</span> Available for MERN & SaaS projects
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="mailto:kristianarchila65@gmail.com"
-              className="btn-cta-final-email"
+              className="px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-lg transition-all"
             >
-              Contactar ahora ✉️
+              send_email()
             </a>
             <a 
               href="https://wa.me/56985622986"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-cta-final-whatsapp"
+              className="px-8 py-3 bg-green-600 hover:bg-green-500 text-white font-bold text-lg transition-all"
             >
-              WhatsApp 📱
+              whatsapp_chat()
             </a>
           </div>
+          <p className="text-xl text-cyan-400 mt-6">
+            <span className="text-cyan-400">{'}'}</span>
+          </p>
         </div>
       </section>
 
       {/* ============================================ */}
-      {/* ESTILOS - MANTIENE TUS ANIMACIONES */}
+      {/* ESTILOS */}
       {/* ============================================ */}
       <style>{`
-        /* Animaciones existentes */
         .animate-pulse-slow {
           animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
@@ -267,91 +299,14 @@ export default function Home() {
           transform: scale(1.05);
         }
 
-        /* NUEVOS ESTILOS PARA CTAs */
-        .btn-primary-cta {
-          display: inline-block;
-          padding: 1rem 2.5rem;
-          background: linear-gradient(to right, #06b6d4, #3b82f6, #6366f1);
-          border-radius: 9999px;
-          font-weight: 700;
-          font-size: 1.125rem;
-          color: white;
-          box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
-          transition: all 0.3s ease;
-          text-align: center;
-        }
-
-        .btn-primary-cta:hover {
-          transform: scale(1.05);
-          box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.5);
-        }
-
-        .btn-secondary-cta {
-          display: inline-block;
-          padding: 1rem 2.5rem;
-          background: rgba(88, 28, 135, 0.5);
-          border: 2px solid rgba(34, 211, 238, 0.5);
-          border-radius: 9999px;
-          font-weight: 700;
-          font-size: 1.125rem;
-          color: white;
-          transition: all 0.3s ease;
-          text-align: center;
-        }
-
-        .btn-secondary-cta:hover {
-          transform: scale(1.05);
-          border-color: rgb(34, 211, 238);
-        }
-
-        .btn-cta-final-email {
-          display: inline-block;
-          padding: 1rem 2.5rem;
-          background: linear-gradient(to right, #06b6d4, #3b82f6);
-          border-radius: 9999px;
-          font-weight: 700;
-          font-size: 1.125rem;
-          color: white;
-          box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.4);
-          transition: all 0.3s ease;
-        }
-
-        .btn-cta-final-email:hover {
-          transform: scale(1.05);
-          box-shadow: 0 20px 25px -5px rgba(6, 182, 212, 0.5);
-        }
-
-        .btn-cta-final-whatsapp {
-          display: inline-block;
-          padding: 1rem 2.5rem;
-          background: #25D366;
-          border-radius: 9999px;
-          font-weight: 700;
-          font-size: 1.125rem;
-          color: white;
-          box-shadow: 0 10px 15px -3px rgba(37, 211, 102, 0.4);
-          transition: all 0.3s ease;
-        }
-
-        .btn-cta-final-whatsapp:hover {
-          transform: scale(1.05);
-          box-shadow: 0 20px 25px -5px rgba(37, 211, 102, 0.5);
-        }
-
-        /* Respetar preferencias de movimiento reducido */
         @media (prefers-reduced-motion: reduce) {
           .animate-pulse-slow,
-          .hover-scale,
-          .btn-primary-cta,
-          .btn-secondary-cta,
-          .btn-cta-final-email,
-          .btn-cta-final-whatsapp {
+          .hover-scale {
             animation: none !important;
             transition: none !important;
           }
         }
 
-        /* Mobile optimizations */
         @media (max-width: 768px) {
           .hover-scale:hover {
             transform: scale(1.02);
