@@ -244,21 +244,23 @@ export default function Home() {
       {/* ================================ */}
       {/* CTA FINAL - TECH STYLE */}
       {/* ================================ */}
-      <section className="relative px-6 md:px-24 py-20">
-        <div className="max-w-4xl mx-auto text-center bg-black/60 border-2 border-cyan-400/30 p-8 md:p-12 font-mono">
-          <p className="text-base md:text-xl text-gray-400 mb-2">
+      <section className="relative px-4 md:px-24 py-20">
+        <div className="max-w-4xl mx-auto text-center bg-black/60 border-2 border-cyan-400/30 p-6 md:p-12 font-mono overflow-hidden">
+          <p className="text-sm md:text-xl text-gray-400 mb-3 overflow-x-auto">
             <span className="text-purple-400">if</span> (project<span className="text-purple-400">.</span>status <span className="text-purple-400">===</span> <span className="text-yellow-400">'pending'</span>) <span className="text-cyan-400">{'{'}</span>
           </p>
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 px-2 md:ml-4 break-words">
-            let's<span className="text-cyan-400">.</span>collaborate<span className="text-yellow-400">()</span>
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-4 px-1 break-all">
+            let's<span className="text-cyan-400">.</span>
+            <br className="sm:hidden" />
+            collaborate<span className="text-yellow-400">()</span>
           </h2>
-          <p className="text-sm md:text-lg text-gray-400 mb-6 md:mb-8 md:ml-4">
-            <span className="text-gray-500">//</span> Available for MERN & SaaS projects
+          <p className="text-xs md:text-lg text-gray-400 mb-6 md:mb-8">
+            <span className="text-gray-500">//</span> Available for MERN & SaaS
           </p>
-          <div className="flex flex-col gap-3 justify-center max-w-md mx-auto">
+          <div className="flex flex-col gap-3 justify-center w-full max-w-xs mx-auto">
             <a 
               href="mailto:kristianarchila65@gmail.com"
-              className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-base md:text-lg transition-all"
+              className="px-4 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-sm md:text-lg transition-all truncate"
             >
               send_email()
             </a>
@@ -266,12 +268,12 @@ export default function Home() {
               href="https://wa.me/56985622986"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold text-base md:text-lg transition-all"
+              className="px-4 py-3 bg-green-600 hover:bg-green-500 text-white font-bold text-sm md:text-lg transition-all truncate"
             >
               whatsapp_chat()
             </a>
           </div>
-          <p className="text-lg md:text-xl text-cyan-400 mt-6">
+          <p className="text-base md:text-xl text-cyan-400 mt-6">
             <span className="text-cyan-400">{'}'}</span>
           </p>
         </div>
