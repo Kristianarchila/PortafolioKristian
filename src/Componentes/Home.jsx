@@ -249,11 +249,13 @@ export default function Home() {
           <p className="text-sm md:text-xl text-gray-400 mb-3 overflow-x-auto">
             <span className="text-purple-400">if</span> (project<span className="text-purple-400">.</span>status <span className="text-purple-400">===</span> <span className="text-yellow-400">'pending'</span>) <span className="text-cyan-400">{'{'}</span>
           </p>
-          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-4 px-1 break-all">
-            let's<span className="text-cyan-400">.</span>
-            <br className="sm:hidden" />
-            collaborate<span className="text-yellow-400">()</span>
-          </h2>
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-4 px-1 
+                break-words break-all whitespace-normal">
+                let's<span className="text-cyan-400">.</span>
+                <br className="sm:hidden" />
+                collaborate<span className="text-yellow-400">()</span>
+              </h2>
+
           <p className="text-xs md:text-lg text-gray-400 mb-6 md:mb-8">
             <span className="text-gray-500">//</span> Available for MERN & SaaS
           </p>
