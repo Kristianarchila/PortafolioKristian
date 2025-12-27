@@ -245,20 +245,20 @@ export default function Home() {
       {/* CTA FINAL - TECH STYLE */}
       {/* ================================ */}
       <section className="relative px-6 md:px-24 py-20">
-        <div className="max-w-4xl mx-auto text-center bg-black/60 border-2 border-cyan-400/30 p-12 font-mono">
-          <p className="text-xl text-gray-400 mb-2">
+        <div className="max-w-4xl mx-auto text-center bg-black/60 border-2 border-cyan-400/30 p-8 md:p-12 font-mono">
+          <p className="text-base md:text-xl text-gray-400 mb-2">
             <span className="text-purple-400">if</span> (project<span className="text-purple-400">.</span>status <span className="text-purple-400">===</span> <span className="text-yellow-400">'pending'</span>) <span className="text-cyan-400">{'{'}</span>
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 ml-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 px-2 md:ml-4 break-words">
             let's<span className="text-cyan-400">.</span>collaborate<span className="text-yellow-400">()</span>
           </h2>
-          <p className="text-lg text-gray-400 mb-8 ml-4">
+          <p className="text-sm md:text-lg text-gray-400 mb-6 md:mb-8 md:ml-4">
             <span className="text-gray-500">//</span> Available for MERN & SaaS projects
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col gap-3 justify-center max-w-md mx-auto">
             <a 
               href="mailto:kristianarchila65@gmail.com"
-              className="px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-lg transition-all"
+              className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-base md:text-lg transition-all"
             >
               send_email()
             </a>
@@ -266,12 +266,12 @@ export default function Home() {
               href="https://wa.me/56985622986"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3 bg-green-600 hover:bg-green-500 text-white font-bold text-lg transition-all"
+              className="px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold text-base md:text-lg transition-all"
             >
               whatsapp_chat()
             </a>
           </div>
-          <p className="text-xl text-cyan-400 mt-6">
+          <p className="text-lg md:text-xl text-cyan-400 mt-6">
             <span className="text-cyan-400">{'}'}</span>
           </p>
         </div>
