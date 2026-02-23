@@ -5,7 +5,7 @@ import RotatingText from "./AnimatedText";
 const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
 const stats = [
-  { value: '1', label: 'SaaS en Producción', icon: '🚀' },
+  { value: '2', label: 'SaaS en Producción', icon: '🚀' },
   { value: '2+', label: 'Años de Experiencia', icon: '📅' },
   { value: '10+', label: 'Tecnologías', icon: '⚡' },
   { value: '5+', label: 'Proyectos', icon: '💻' },
