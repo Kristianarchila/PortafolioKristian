@@ -1,124 +1,143 @@
-import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 export default function Navbar() {
-  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('inicio');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 60);
+
+      // Detect active section
+      const sections = ['inicio', 'sobre-mi', 'tecnologias', 'portafolio', 'contacto'];
+      const offsets = sections.map(id => {
+        const el = document.getElementById(id);
+        return el ? { id, top: el.getBoundingClientRect().top } : null;
+      }).filter(Boolean);
+
+      const current = offsets.filter(o => o.top <= 120).pop();
+      if (current) setActiveSection(current.id);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
+  };
+
   const navLinks = [
-    { to: '/', label: 'Home' },
-    { to: '/sobre-mi', label: 'Sobre Mí' },
-    { to: '/tecnologias', label: 'Tecnologías' },
-    { to: '/portafolio', label: 'Portafolio' },
-    { to: '/contacto', label: 'Contacto' }
+    { id: 'inicio', label: 'Inicio' },
+    { id: 'sobre-mi', label: 'Sobre Mí' },
+    { id: 'tecnologias', label: 'Tecnologías' },
+    { id: 'portafolio', label: 'Proyectos' },
+    { id: 'contacto', label: 'Contacto' },
   ];
 
   return (
     <>
-      <nav 
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled 
-            ? 'bg-purple-950/95 backdrop-blur-md shadow-lg shadow-blue-500/10 py-3' 
-            : 'bg-transparent py-6'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          
+      <nav style={{
+        position: 'fixed', top: 0, width: '100%', zIndex: 50,
+        transition: 'all 0.35s ease',
+        padding: scrolled ? '0.8rem 0' : '1.2rem 0',
+        background: scrolled ? 'rgba(8,13,26,0.93)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(18px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : 'none',
+      }}>
+        <div style={{
+          maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        }}>
           {/* Logo */}
-          <Link 
-            to="/" 
-            className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent hover:scale-105 transition-transform z-50"
-          >
-            Kris.dev
-          </Link>
+          <button onClick={() => scrollTo('inicio')} style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: '1.35rem', fontWeight: 800, letterSpacing: '-0.02em',
+          }}>
+            <span style={{ color: '#f1f5f9' }}>Kris</span>
+            <span style={{ color: 'var(--accent-gold)' }}>.</span>
+            <span style={{ color: '#6366f1' }}>dev</span>
+          </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                  location.pathname === link.to
-                    ? 'text-cyan-400'
-                    : 'text-blue-100/80 hover:text-cyan-300'
-                }`}
-              >
-                {link.label}
-                {location.pathname === link.to && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full" />
-                )}
-              </Link>
-            ))}
+          {/* Desktop links */}
+          <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0.15rem' }}>
+            {navLinks.map(link => {
+              const isActive = activeSection === link.id;
+              return (
+                <button key={link.id} onClick={() => scrollTo(link.id)} style={{
+                  background: isActive ? 'rgba(245,158,11,0.08)' : 'none',
+                  border: 'none', cursor: 'pointer',
+                  padding: '0.45rem 0.95rem', borderRadius: 8,
+                  fontSize: '0.87rem', fontWeight: isActive ? 600 : 500,
+                  color: isActive ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                  transition: 'all 0.2s ease',
+                }}
+                  onMouseEnter={e => { if (!isActive) { e.target.style.color = 'var(--text-primary)'; e.target.style.background = 'rgba(255,255,255,0.05)'; } }}
+                  onMouseLeave={e => { if (!isActive) { e.target.style.color = 'var(--text-secondary)'; e.target.style.background = 'none'; } }}
+                >
+                  {link.label}
+                </button>
+              );
+            })}
           </div>
 
-          {/* CTA Button Desktop */}
-          <Link
-            to="/contacto"
-            className="hidden md:block bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 hover:from-cyan-400 hover:via-blue-400 hover:to-indigo-500 text-white px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-cyan-400/40 hover:scale-105"
+          {/* CTA */}
+          <button
+            onClick={() => scrollTo('contacto')}
+            className="btn-gold desktop-cta"
+            style={{ fontSize: '0.83rem', padding: '0.55rem 1.3rem', border: 'none', cursor: 'pointer' }}
           >
-            Hablemos 🚀
-          </Link>
+            Hablemos →
+          </button>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-cyan-400 hover:text-cyan-300 transition-colors z-50"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+          {/* Mobile burger */}
+          <button className="mobile-burger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{
+            background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', padding: '0.3rem',
+          }}>
+            {mobileMenuOpen
+              ? <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              : <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+            }
           </button>
         </div>
       </nav>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <div 
-            className="absolute inset-0 bg-purple-950/95 backdrop-blur-lg"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <div className="relative h-full flex flex-col items-center justify-center space-y-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`text-2xl font-bold transition-all duration-300 ${
-                  location.pathname === link.to
-                    ? 'text-cyan-400 scale-110'
-                    : 'text-blue-100/80 hover:text-cyan-300 hover:scale-105'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              to="/contacto"
-              onClick={() => setMobileMenuOpen(false)}
-              className="bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg shadow-blue-500/30 hover:scale-105 transition-transform"
-            >
-              Hablemos 🚀
-            </Link>
-          </div>
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 49,
+          background: 'rgba(8,13,26,0.97)', backdropFilter: 'blur(20px)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem',
+        }}>
+          {navLinks.map(link => (
+            <button key={link.id} onClick={() => scrollTo(link.id)} style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontFamily: "'Outfit', sans-serif", fontSize: '1.75rem', fontWeight: 700,
+              color: activeSection === link.id ? 'var(--accent-gold)' : 'var(--text-primary)',
+              transition: 'color 0.2s',
+            }}>
+              {link.label}
+            </button>
+          ))}
+          <button onClick={() => scrollTo('contacto')} className="btn-gold" style={{ marginTop: '0.5rem', border: 'none', cursor: 'pointer' }}>
+            Hablemos →
+          </button>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .desktop-cta { display: none !important; }
+          .mobile-burger { display: block !important; }
+        }
+        @media (min-width: 769px) {
+          .mobile-burger { display: none !important; }
+        }
+      `}</style>
     </>
   );
 }

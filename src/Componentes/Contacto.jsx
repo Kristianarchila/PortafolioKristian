@@ -1,299 +1,283 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import Particles from "./Backgrods";
+
+const contactCards = [
+  {
+    icon: '💬',
+    label: 'WhatsApp',
+    value: '+56 9 8562 2986',
+    sub: 'Respuesta en minutos',
+    link: 'https://wa.me/56985622986',
+    color: '#25d366',
+  },
+  {
+    icon: '✉️',
+    label: 'Email',
+    value: 'kristianarchila65@gmail.com',
+    sub: 'Respuesta en < 24 h',
+    link: 'mailto:kristianarchila65@gmail.com',
+    color: 'var(--accent-gold)',
+  },
+  {
+    icon: '💼',
+    label: 'LinkedIn',
+    value: 'Kristian Archila',
+    sub: 'Red profesional',
+    link: 'https://www.linkedin.com/in/kristian-archila-34409718a/',
+    color: '#0a66c2',
+  },
+  {
+    icon: '🐙',
+    label: 'GitHub',
+    value: 'Kristianarchila',
+    sub: 'Ver mis repositorios',
+    link: 'https://github.com/Kristianarchila',
+    color: '#f1f5f9',
+  },
+];
+
+const inputStyle = {
+  width: '100%',
+  padding: '0.85rem 1rem',
+  borderRadius: 10,
+  border: '1px solid rgba(255,255,255,0.1)',
+  background: 'rgba(255,255,255,0.04)',
+  color: 'var(--text-primary)',
+  fontSize: '0.9rem',
+  outline: 'none',
+  transition: 'border-color 0.25s ease',
+  fontFamily: "'Inter', sans-serif",
+};
 
 export default function Contacto() {
   const form = useRef();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState(null); // null | 'sending' | 'ok' | 'error'
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setStatus('sending');
 
     emailjs
-      .sendForm(
-        "service_4riiu1n",
-        "template_yaxclmd",
-        form.current,
-        "Y1A1kU_Rw2biLgWkB"
-      )
-      .then(
-        (result) => {
-          alert("✓ Message sent successfully! I'll respond within 24 hours.");
-          form.current.reset();
-          setIsSubmitting(false);
-        },
-        (error) => {
-          alert("✗ Error sending message. Please try WhatsApp instead.");
-          console.log(error.text);
-          setIsSubmitting(false);
-        }
-      );
+      .sendForm("service_4riiu1n", "template_yaxclmd", form.current, "Y1A1kU_Rw2biLgWkB")
+      .then(() => {
+        setStatus('ok');
+        form.current.reset();
+        setTimeout(() => setStatus(null), 5000);
+      })
+      .catch(() => {
+        setStatus('error');
+        setTimeout(() => setStatus(null), 5000);
+      });
   };
 
   return (
-    <section className="relative min-h-screen py-20 px-6 md:px-24 overflow-hidden flex items-center justify-center">
-       {/* 🌌 Fondo de partículas - TECH STYLE */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-gray-900 to-blue-950">
-        <Particles
-          particleCount={30}
-          particleSpread={10}
-          speed={0.3}
-          particleColors={["#1a1a1aff", "#0a4a6aff", "#0c2d48ff"]}
-          moveParticlesOnHover={false}
-          particleHoverFactor={0}
-          alphaParticles={false}
-          particleBaseSize={200}
-          sizeRandomness={2}
-          cameraDistance={25}
-        />
-      </div>
+    <section style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(180deg, var(--bg-primary) 0%, #0a0d1f 100%)',
+      padding: '7rem 1.5rem 5rem',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      <div className="orb orb-gold" style={{ width: 420, height: 420, top: '5%', left: '-8%', opacity: 0.16 }} />
+      <div className="orb orb-indigo" style={{ width: 350, height: 350, bottom: '0%', right: '-5%', opacity: 0.18 }} />
 
-      {/* Partículas decorativas */}
-      <div className="absolute inset-0 -z-10 opacity-20">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gray-500/10 rounded-full blur-3xl" />
-      </div>
+      <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
-      <div className="w-full max-w-5xl">
-        {/* Header - TECH STYLE */}
-        <motion.div 
+        {/* Header */}
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 font-mono"
+          style={{ textAlign: 'center', marginBottom: '3.5rem' }}
         >
-          <div className="text-cyan-400 text-sm mb-2">{'<contact>'}</div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
-            contact<span className="text-cyan-400">.</span>me<span className="text-purple-400">()</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-6">
-            <span className="text-purple-400">//</span> Let's build something amazing together
+          <div className="section-label" style={{ justifyContent: 'center', marginBottom: '0.75rem' }}>Contacto</div>
+          <h2 className="section-title">¿Hablamos?</h2>
+          <p style={{ color: 'var(--text-secondary)', marginTop: '0.75rem', maxWidth: 480, margin: '0.75rem auto 0', fontSize: '1rem', lineHeight: 1.7 }}>
+            Estoy disponible para proyectos freelance, colaboraciones y posiciones full-time. ¡Escríbeme!
           </p>
-          
-          {/* Badge de disponibilidad - TECH STYLE */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/40 border border-green-400/50 text-green-400 text-sm font-mono">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            <span>status: <span className="text-white">available</span></span>
+          {/* Available badge */}
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+            marginTop: '1.25rem',
+            background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)',
+            borderRadius: 50, padding: '0.35rem 1rem',
+          }}>
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#4ade80', boxShadow: '0 0 6px #4ade80' }} />
+            <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#4ade80' }}>Disponible ahora</span>
           </div>
         </motion.div>
 
-        {/* Grid: Formulario + Contacto Directo */}
-        <div className="grid md:grid-cols-3 gap-6">
-          
-          {/* FORMULARIO - TECH STYLE */}
+        {/* Grid: form + contact cards */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 380px',
+          gap: '2rem',
+          alignItems: 'start',
+        }} className="contact-grid">
+
+          {/* Form */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-2 bg-black/60 backdrop-blur-sm p-8 md:p-10 border-2 border-gray-700 shadow-2xl font-mono"
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="glass-card"
+            style={{ padding: '2.25rem' }}
           >
-            <div className="flex items-center gap-2 mb-6">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <span className="text-gray-400 text-sm ml-2">$ send_message.sh</span>
-            </div>
+            <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.2rem', fontWeight: 700, marginBottom: '1.5rem', color: 'var(--text-primary)' }}>
+              Envíame un mensaje
+            </h3>
 
-            <form ref={form} onSubmit={sendEmail} className="space-y-5">
-              
-              {/* Grid: Nombre + Email */}
-              <div className="grid md:grid-cols-2 gap-5">
-                {/* Nombre */}
+            <form ref={form} onSubmit={sendEmail} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="form-row">
                 <div>
-                  <label htmlFor="name" className="block text-sm text-gray-400 mb-2">
-                    <span className="text-cyan-400">{'>'}</span> name:
+                  <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'block' }}>
+                    Nombre
                   </label>
                   <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="your_name"
-                    className="w-full px-4 py-3 bg-black/60 border border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
+                    type="text" name="name" required placeholder="Tu nombre"
+                    style={inputStyle}
+                    onFocus={e => e.target.style.borderColor = 'var(--accent-gold)'}
+                    onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
                   />
                 </div>
-
-                {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm text-gray-400 mb-2">
-                    <span className="text-cyan-400">{'>'}</span> email:
+                  <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'block' }}>
+                    Email
                   </label>
                   <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="you@email.com"
-                    className="w-full px-4 py-3 bg-black/60 border border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all"
+                    type="email" name="email" required placeholder="tu@email.com"
+                    style={inputStyle}
+                    onFocus={e => e.target.style.borderColor = 'var(--accent-gold)'}
+                    onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
                   />
                 </div>
               </div>
 
-              {/* Tipo de proyecto */}
               <div>
-                <label htmlFor="project_type" className="block text-sm text-gray-400 mb-2">
-                  <span className="text-cyan-400">{'>'}</span> project_type:
+                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'block' }}>
+                  Tipo de proyecto
                 </label>
                 <select
-                  id="project_type"
-                  name="project_type"
-                  required
-                  className="w-full px-4 py-3 bg-black/60 border border-gray-600 text-white focus:outline-none focus:border-cyan-400 transition-all"
+                  name="project_type" required
+                  style={{ ...inputStyle, cursor: 'pointer' }}
+                  onFocus={e => e.target.style.borderColor = 'var(--accent-gold)'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
                 >
-                  <option value="">--select option</option>
-                  <option value="web">website / landing_page</option>
-                  <option value="app">web_application</option>
-                  <option value="backend">backend / api</option>
-                  <option value="full">full_stack_project</option>
-                  <option value="other">other</option>
+                  <option value="" style={{ background: '#0d1428' }}>Selecciona una opción</option>
+                  <option value="web" style={{ background: '#0d1428' }}>Sitio web / Landing page</option>
+                  <option value="app" style={{ background: '#0d1428' }}>Aplicación web</option>
+                  <option value="backend" style={{ background: '#0d1428' }}>Backend / API REST</option>
+                  <option value="full" style={{ background: '#0d1428' }}>Proyecto Full-Stack</option>
+                  <option value="other" style={{ background: '#0d1428' }}>Otro</option>
                 </select>
               </div>
 
-              {/* Mensaje */}
               <div>
-                <label htmlFor="message" className="block text-sm text-gray-400 mb-2">
-                  <span className="text-cyan-400">{'>'}</span> message:
+                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'block' }}>
+                  Mensaje
                 </label>
                 <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows="5"
-                  placeholder="// Describe your project, timeline, budget..."
-                  className="w-full px-4 py-3 bg-black/60 border border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all resize-none"
+                  name="message" required rows="5"
+                  placeholder="Cuéntame sobre tu proyecto, plazos, presupuesto..."
+                  style={{ ...inputStyle, resize: 'vertical', minHeight: 120 }}
+                  onFocus={e => e.target.style.borderColor = 'var(--accent-gold)'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
                 />
               </div>
 
-              {/* Botón - TECH STYLE */}
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className={`w-full bg-cyan-500 hover:bg-cyan-400 text-black px-8 py-4 font-bold text-lg transition-all duration-300 ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:scale-[1.02]'
-                }`}
+                disabled={status === 'sending'}
+                className="btn-gold"
+                style={{
+                  width: '100%', justifyContent: 'center', border: 'none',
+                  opacity: status === 'sending' ? 0.7 : 1,
+                  padding: '0.9rem',
+                  fontSize: '0.95rem',
+                }}
               >
-                {isSubmitting ? '$ sending...' : '$ submit_form()'}
+                {status === 'sending' ? 'Enviando...' : 'Enviar mensaje →'}
               </button>
+
+              {/* Status messages */}
+              {status === 'ok' && (
+                <div style={{ borderRadius: 10, padding: '0.75rem 1rem', background: 'rgba(74,222,128,0.1)', border: '1px solid rgba(74,222,128,0.3)', color: '#4ade80', fontSize: '0.85rem', fontWeight: 500, textAlign: 'center' }}>
+                  ✓ Mensaje enviado. Te responderé en menos de 24 horas.
+                </div>
+              )}
+              {status === 'error' && (
+                <div style={{ borderRadius: 10, padding: '0.75rem 1rem', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', color: '#f87171', fontSize: '0.85rem', fontWeight: 500, textAlign: 'center' }}>
+                  ✗ Error al enviar. Escríbeme por WhatsApp.
+                </div>
+              )}
             </form>
           </motion.div>
 
-          {/* CONTACTO DIRECTO - TECH STYLE */}
+          {/* Contact cards */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-4 font-mono"
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}
           >
-            {/* WhatsApp */}
-            <a 
-              href="https://wa.me/56985622986"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block bg-black/60 border-2 border-green-500/50 hover:border-green-400 p-5 transition-all hover:scale-105"
-            >
-              <div className="flex items-start gap-3">
-                <div className="text-3xl">📱</div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-white mb-1 text-sm">whatsapp</h3>
-                  <p className="text-xs text-gray-400 mb-2">instant_response</p>
-                  <div className="text-green-400 text-xs font-bold">
-                    {'>'} chat_now()
+            {contactCards.map((card, i) => (
+              <a
+                key={i}
+                href={card.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-card"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '1rem',
+                  padding: '1.1rem 1.25rem', textDecoration: 'none',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = card.color + '55'; e.currentTarget.style.transform = 'translateX(4px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'translateX(0)'; }}
+              >
+                <div style={{
+                  width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+                  background: card.color + '18',
+                  border: `1px solid ${card.color}44`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1.3rem',
+                }}>
+                  {card.icon}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, marginBottom: '0.15rem' }}>
+                    {card.label}
                   </div>
-                </div>
-              </div>
-            </a>
-
-            {/* Email */}
-            <div className="bg-black/60 border-2 border-gray-700 p-5">
-              <div className="flex items-start gap-3">
-                <div className="text-3xl">✉️</div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-white mb-1 text-sm">email</h3>
-                  <p className="text-xs text-gray-400 mb-2">formal_proposals</p>
-                  <a 
-                    href="mailto:kristianarchila65@gmail.com"
-                    className="text-cyan-400 hover:text-cyan-300 text-xs break-all"
-                  >
-                    kristianarchila65@
-                    <br />gmail.com
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* LinkedIn */}
-            <a 
-              href="https://www.linkedin.com/in/kristian-archila-34409718a/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block bg-black/60 border-2 border-gray-700 hover:border-blue-400 p-5 transition-all"
-            >
-              <div className="flex items-start gap-3">
-                <div className="text-3xl">💼</div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-white mb-1 text-sm">linkedin</h3>
-                  <p className="text-xs text-gray-400 mb-2">professional_network</p>
-                  <div className="text-cyan-400 text-xs">
-                    {'>'} view_profile()
+                  <div style={{
+                    fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: 600,
+                    overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                  }}>
+                    {card.value}
                   </div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>{card.sub}</div>
                 </div>
-              </div>
-            </a>
-
-            {/* GitHub */}
-            <a 
-              href="https://github.com/Kristianarchila"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block bg-black/60 border-2 border-gray-700 hover:border-purple-400 p-5 transition-all"
-            >
-              <div className="flex items-start gap-3">
-                <div className="text-3xl">💻</div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-white mb-1 text-sm">github</h3>
-                  <p className="text-xs text-gray-400 mb-2">view_source_code</p>
-                  <div className="text-cyan-400 text-xs">
-                    {'>'} explore_repos()
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            {/* Tiempo de respuesta */}
-            <div className="bg-cyan-500/10 border-2 border-cyan-400/30 p-4 text-center">
-              <p className="text-xs text-cyan-300">
-                <span className="text-gray-400">response_time:</span> {'<'} 24h
-              </p>
-            </div>
+                <svg width="14" height="14" fill="none" stroke="var(--text-muted)" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            ))}
           </motion.div>
         </div>
 
-        {/* Cerrar tag */}
-        <div className="text-cyan-400 text-sm text-center mt-8 font-mono">{'</contact>'}</div>
+        {/* Footer line */}
+        <div style={{ textAlign: 'center', marginTop: '4rem', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
+          Diseñado & desarrollado por <strong style={{ color: 'var(--accent-gold)' }}>Kristian Archila</strong> · 2025
+        </div>
       </div>
 
-      {/* Estilos */}
       <style>{`
-        .animate-pulse-slow {
-          animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.3; }
-        }
-
-        /* Respetar preferencias de movimiento reducido */
-        @media (prefers-reduced-motion: reduce) {
-          .animate-pulse-slow,
-          .animate-pulse {
-            animation: none !important;
-          }
+        @media (max-width: 768px) {
+          .contact-grid { grid-template-columns: 1fr !important; }
+          .form-row { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
