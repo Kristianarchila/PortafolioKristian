@@ -31,8 +31,6 @@ const technologies = [
   { name: 'Linux / VPS', icon: '🖥️', category: 'devops', level: 68, color: '#fcc624' },
 ];
 
-const levelLabel = (l) => l >= 85 ? 'Avanzado' : l >= 70 ? 'Intermedio' : 'En desarrollo';
-const levelColor = (l) => l >= 85 ? '#f59e0b' : l >= 70 ? '#6366f1' : '#64748b';
 
 export default function Tecnologias() {
   const [selected, setSelected] = useState('all');
@@ -102,70 +100,58 @@ export default function Tecnologias() {
 
         {/* Tech grid */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={selected}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-              gap: '1rem',
-            }}
-          >
-            {filtered.map((tech, i) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: i * 0.05 }}
-                className="glass-card"
-                style={{ padding: '1.25rem 1.4rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
-              >
-                {/* Top row: icon + name + level badge */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <span style={{ fontSize: '1.75rem', lineHeight: 1 }}>{tech.icon}</span>
-                  <div style={{ flex: 1 }}>
-                    <div style={{
-                      fontFamily: "'Outfit', sans-serif",
-                      fontWeight: 700, fontSize: '0.95rem',
-                      color: 'var(--text-primary)',
-                    }}>{tech.name}</div>
-                  </div>
-                  <span style={{
-                    padding: '0.2rem 0.65rem', borderRadius: 50,
-                    fontSize: '0.68rem', fontWeight: 700,
-                    background: `${levelColor(tech.level)}22`,
-                    color: levelColor(tech.level),
-                    border: `1px solid ${levelColor(tech.level)}44`,
-                    whiteSpace: 'nowrap',
+            <motion.div
+              key={selected}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))',
+                gap: '1.25rem',
+              }}
+            >
+              {filtered.map((tech, i) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  whileHover={{ y: -5, scale: 1.05, boxShadow: `0 10px 25px ${tech.color}22` }}
+                  transition={{ duration: 0.35, delay: i * 0.03 }}
+                  className="glass-card"
+                  style={{ 
+                    padding: '2rem 1rem', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1.25rem',
+                    borderRadius: '20px',
+                    border: `1px solid ${tech.color}22`,
+                    aspectRatio: '1 / 1'
+                  }}
+                >
+                  <div style={{ 
+                    fontSize: '4rem', 
+                    lineHeight: 1,
+                    filter: `drop-shadow(0 8px 16px ${tech.color}44)`
                   }}>
-                    {levelLabel(tech.level)}
-                  </span>
-                </div>
-
-                {/* Progress bar */}
-                <div style={{
-                  height: 5, borderRadius: 3,
-                  background: 'rgba(255,255,255,0.07)',
-                  overflow: 'hidden',
-                }}>
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${tech.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.9, delay: 0.1 + i * 0.04, ease: 'easeOut' }}
-                    style={{
-                      height: '100%',
-                      borderRadius: 3,
-                      background: `linear-gradient(90deg, ${tech.color}99, ${tech.color})`,
-                    }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+                    {tech.icon}
+                  </div>
+                  <div style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontWeight: 600, 
+                    fontSize: '0.9rem',
+                    color: 'var(--text-primary)',
+                    textAlign: 'center',
+                    letterSpacing: '0.02em'
+                  }}>
+                    {tech.name}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
         </AnimatePresence>
 
         {/* Extra skills pills */}
