@@ -19,7 +19,7 @@ const projectoEstrella = {
     "Dockerizado con Nginx reverse-proxy, desplegado en VPS",
   ],
   tecnologias: ["Node.js", "React", "MongoDB", "Docker", "Nginx", "JWT", "Express", "PWA"],
-  link: "https://barbersaas.duckdns.org/ilovebarbero",
+  link: "https://agendabarber.cloud/capitanbarbers",
   github: "https://github.com/Kristianarchila",
 };
 
