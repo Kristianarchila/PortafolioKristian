@@ -68,7 +68,7 @@ export default function SobreMi() {
                 filter: 'blur(20px)',
               }} />
               <img
-                src="/kris.png"
+                src="/nuevafoto.jpeg"
                 alt="Kristian Archila"
                 loading="lazy"
                 style={{

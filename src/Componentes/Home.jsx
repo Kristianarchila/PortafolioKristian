@@ -166,7 +166,7 @@ export default function Home() {
                 background: 'transparent',
               }} />
               <img
-                src="/kris.png"
+                src="/nuevafoto.jpeg"
                 alt="Kristian Archila"
                 loading="lazy"
                 className="animate-float"
